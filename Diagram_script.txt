@@ -1,0 +1,68 @@
+classDiagram
+    Ant <|-- AntWorker
+    Ant <|-- AntFighter
+    Ant <|-- AntQueen
+    Ant <|-- AntEgg
+    Ant <|-- AntLarva
+    Colony <-- Ant
+    Grid <--Colony
+    Grid <--Food
+    Grid <--Obstacle
+    Grid <--Pheromone
+
+    class Grid{
+        + pair<int,int> size
+        + Colony[] _colonies
+        + Food[] _foods
+        + Obstacle[] _obstacles
+        + Pheromone[] _pheromones
+    }
+
+
+    class Colony{
+        + int _size
+        + pair<int,int> _coord
+        + Ant[] _ants
+        + int _foodStorage
+    }
+
+    class Ant{
+        + int _age
+        + color _color
+        + int _maxHP
+        + int _currentHP
+        + pair<int,int> _coord
+    }
+    class AntFighter{
+        + boolean _haveFood
+        + int _typeOfFood
+        
+    }
+    class AntQueen{
+        + int _timeSinceEggLaying
+    }
+
+    class Obstacle{
+        + pair<int,int> _coord
+    }
+    class Food{
+        + int _typeOfFood
+        + pair<int,int> _coord
+        + int HpRecovery
+    }
+
+    class Pheromone{
+        + pair<int,int> _coord
+        + boolean foodAhead
+        + float _concentration
+    }
+
+
+State Diagram
+
+stateDiagram-v2
+    [*] --> Egg : Born    
+    Egg --> Larva : Evolution
+    Larva --> Worker: Evolution
+    Worker --> Fighter : Evolution
+    Fighter --> [*] : Death
