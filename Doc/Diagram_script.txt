@@ -11,7 +11,7 @@ classDiagram
     Grid <--Pheromone
 
     class Grid{
-        + pair<int,int> size
+        + pair<int,int> _size
         + Colony[] _colonies
         + Food[] _foods
         + Obstacle[] _obstacles
@@ -20,6 +20,7 @@ classDiagram
 
 
     class Colony{
+        + int _colonyId
         + int _size
         + pair<int,int> _coord
         + Ant[] _ants
@@ -36,7 +37,7 @@ classDiagram
     class AntFighter{
         + boolean _haveFood
         + int _typeOfFood
-        
+
     }
     class AntQueen{
         + int _timeSinceEggLaying
@@ -48,21 +49,23 @@ classDiagram
     class Food{
         + int _typeOfFood
         + pair<int,int> _coord
-        + int HpRecovery
+        + int _quantity
+        + int _hpRecovery
     }
 
     class Pheromone{
         + pair<int,int> _coord
-        + boolean foodAhead
+        + boolean _foodAhead
         + float _concentration
+        + int _colonyId
     }
 
 
 State Diagram
 
 stateDiagram-v2
-    [*] --> Egg : Born    
-    Egg --> Larva : Evolution
-    Larva --> Worker: Evolution
-    Worker --> Fighter : Evolution
-    Fighter --> [*] : Death
+    [*] --> Egg(0/10) : Born
+    Egg(0/10) --> Larva(11/20) : Evolution
+    Larva(11/20) --> Worker(21/30): Evolution
+    Worker(21/30) --> Fighter(31/60) : Evolution
+    Fighter(31/60) --> [*] : Death
