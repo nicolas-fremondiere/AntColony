@@ -1,8 +1,5 @@
-//
-// Created by nfrem on 29/04/2021.
-//
 
-#include "../include/Pheromone.h"
+#include "Pheromone.h"
 
 Pheromone::Pheromone(const std::pair<int, int> &coord, bool foodAhead, float concentration, int colonyId) : _coord(
         coord), _foodAhead(foodAhead), _concentration(concentration), _colonyId(colonyId) {}

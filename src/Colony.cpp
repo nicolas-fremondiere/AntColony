@@ -1,6 +1,6 @@
 
 
-#include "../include/Colony.h"
+#include "Colony.h"
 
 Colony::Colony(int size, std::pair<int,int> coord, std::vector<Ant> ants, int foodStorage) :
         _size(size),

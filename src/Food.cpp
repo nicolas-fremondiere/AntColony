@@ -1,18 +1,18 @@
-//
-// Created by nfrem on 29/04/2021.
-//
 
-#include "../include/Food.h"
+#include "Food.h"
 
-Food::Food(int typeOfFood, const std::pair<int, int> &coord, int hpRecovery) : _typeOfFood(typeOfFood), _coord(coord),
-                                                                               _hpRecovery(hpRecovery) {}
-
-int Food::getTypeOfFood() const {
-    return _typeOfFood;
+Food::Food( const std::pair<int, int> &coord, int hpRecovery) :  _coord(coord), _hpRecovery(hpRecovery)
+{
+    //Random between 50 and 149
+    _currentQuantity = (rand()%100)+50;
 }
 
-void Food::setTypeOfFood(int typeOfFood) {
-    _typeOfFood = typeOfFood;
+int Food::getCurrentQuantity() const {
+    return _currentQuantity;
+}
+
+void Food::setCurrentQuantity(int currentQuantity) {
+    _currentQuantity = currentQuantity;
 }
 
 const std::pair<int, int> &Food::getCoord() const {

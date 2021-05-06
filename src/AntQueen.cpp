@@ -1,8 +1,8 @@
 
-#include "../include/AntQueen.h"
+#include "AntQueen.h"
 
-AntQueen::AntQueen(std::pair<int, int> coord, int age, int color, int maxHp, int currentHp, int timeSinceEggLaying):
-    Ant(coord, age, color, maxHp, currentHp),
+AntQueen::AntQueen(std::pair<int, int> coord, int age, int color, int maxHp, int currentHp, int timeSinceEggLaying,int damageByHunger):
+    Ant(coord, age, color, maxHp, currentHp,damageByHunger),
     _timeSinceEggLaying(timeSinceEggLaying)
 {
 

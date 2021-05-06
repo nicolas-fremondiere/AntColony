@@ -1,8 +1,5 @@
-//
-// Created by nfrem on 29/04/2021.
-//
 
-#include "../include/Obstacle.h"
+#include "Obstacle.h"
 
 Obstacle::Obstacle(const std::pair<int, int> &coord) : _coord(coord) {}
 

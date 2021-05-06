@@ -3,8 +3,7 @@
 
 ### Our goal
 The goal of this project is to simulate the behavior of an ant colony.
-It is developed as a school project in C++ with Gtkmm3 as an ihm library.
-
+It is developed as a school project in C++ with QT as a graphical library.
 
 ###Problematic
 - How to simulate an ant ? 
@@ -35,7 +34,6 @@ We stated that the ant will have a fix age at which they will evolve.
 | Queen   | 500 | INF   |
 
 
-
-
 ###AntFighter State Diagram
 ![AntFighter](AntFighter_Stage_Diagram.png)
+

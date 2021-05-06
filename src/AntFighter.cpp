@@ -1,13 +1,13 @@
 
 
-#include "../include/AntFighter.h"
+#include "AntFighter.h"
 
 
 AntFighter::AntFighter(std::pair<int, int> coord,int age, int color, int maxHp, int currentHp, bool haveFood,
-                       int typeofFood):
-        Ant(coord,age, color, maxHp, currentHp),
+                       int quantityOfFood,int damageByHunger):
+        Ant(coord,age, color, maxHp, currentHp,damageByHunger),
         _haveFood(haveFood),
-        _typeofFood(typeofFood)
+        _quantityOfFood(quantityOfFood)
 {
 
 }
@@ -21,11 +21,19 @@ void AntFighter::setHaveFood(bool haveFood) {
     _haveFood = haveFood;
 }
 
-int AntFighter::getTypeofFood() const {
-    return _typeofFood;
+int AntFighter::getQuantityOfFood() const {
+    return _quantityOfFood;
 }
 
-void AntFighter::setTypeofFood(int typeofFood) {
-    _typeofFood = typeofFood;
+void AntFighter::setQuantityOfFood(int quantityOfFood) {
+    _quantityOfFood = quantityOfFood;
+}
+
+int AntFighter::getQuantityMaxOfFood() const {
+    return _quantityMaxOfFood;
+}
+
+void AntFighter::setQuantityMaxOfFood(int quantityMaxOfFood) {
+    _quantityMaxOfFood = quantityMaxOfFood;
 }
 
