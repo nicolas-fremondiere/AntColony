@@ -2,8 +2,7 @@
 
 #include "Colony.h"
 
-Colony::Colony(int size, std::pair<int,int> coord, std::vector<Ant> ants, int foodStorage) :
-        _size(size),
+Colony::Colony(std::pair<int,int> coord, std::vector<Ant> ants, int foodStorage) :
         _coord(coord),
         _ants(ants),
         _foodStorage(foodStorage)
@@ -11,13 +10,6 @@ Colony::Colony(int size, std::pair<int,int> coord, std::vector<Ant> ants, int fo
 
 }
 
-int Colony::getSize() const {
-    return _size;
-}
-
-void Colony::setSize(int size) {
-    _size = size;
-}
 
 const std::pair<int, int> &Colony::getCoord() const {
     return _coord;

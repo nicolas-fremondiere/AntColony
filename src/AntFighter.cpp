@@ -4,10 +4,11 @@
 
 
 AntFighter::AntFighter(std::pair<int, int> coord,int age, int color, int maxHp, int currentHp, bool haveFood,
-                       int quantityOfFood,int damageByHunger):
+                       int quantityOfFood,int damageByHunger,int quantityMaxOfFood):
         Ant(coord,age, color, maxHp, currentHp,damageByHunger),
         _haveFood(haveFood),
-        _quantityOfFood(quantityOfFood)
+        _quantityOfFood(quantityOfFood),
+        _quantityMaxOfFood(quantityMaxOfFood)
 {
 
 }

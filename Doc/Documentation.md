@@ -37,3 +37,32 @@ We stated that the ant will have a fix age at which they will evolve.
 ###AntFighter State Diagram
 ![AntFighter](AntFighter_Stage_Diagram.png)
 
+
+
+###  Rules
+
+
+
+
+###  Dev tasks
+
+- [x] Initialize the project
+- [x] Prototype the IHM
+- [x] Make all the classes, constructos/destructors and accessors
+- [ ] Code a function to make an ant move - **Chloé**
+- [ ] Display a colony by calling the constructor of the class - **Nicolas**
+- [ ] Display a food source by calling the constructor of the class - **Chloé**
+- [ ] Display and obstacle by calling the constructor of the class - **Chloé**
+- [ ] Make the pheromone display depending on its concentration (color) - **Nicolas**
+- [ ] Initialize a grid with default values - **Nicolas**
+- [ ] Display the counter of the egg,larva,worker and fighter -  **Chloé**
+- [ ] Develop the round system - **Nicolas**
+- [ ] Make the queen produce egg - **Chloé**
+- [ ] Make the evolution system & hunger system & age system- **Nicolas**
+- [ ] Make the pheromone disapear other time - **Chloé et Nicolas**
+- [ ] Make the pheromone decision system for the fighter ant - **Chloé et Nicolas**
+- [ ] Make the fighter ant able to carry food and deposit it in the nest - **Chloé**
+- [ ] Make food or obstacles with random chances - **Nicolas**
+- [ ] On click, make food or obstacles (left or right click) - **Nicolas**
+- [ ] **Optional** : Make a new queen
+- [ ] **Optional** : Make the unitary tests

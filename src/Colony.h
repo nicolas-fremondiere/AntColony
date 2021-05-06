@@ -7,11 +7,7 @@
 
 class Colony {
 public:
-    Colony(int size, std::pair<int, int> coord, std::vector<Ant> ants, int foodStorage);
-
-    int getSize() const;
-
-    void setSize(int size);
+    Colony(std::pair<int, int> coord, std::vector<Ant> ants, int foodStorage);
 
     const std::pair<int, int> &getCoord() const;
 
@@ -27,7 +23,6 @@ public:
 
 
 private:
-    int _size;
     std::pair<int,int> _coord;
     std::vector<Ant> _ants;
     int _foodStorage;

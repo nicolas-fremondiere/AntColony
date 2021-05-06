@@ -1,8 +1,7 @@
 <RCC>
     <qresource prefix="/ressources">
         <file>img/ant_side.svg</file>
-        <file>img/blue_circle_resized.png</file>
-        <file>img/green_circle_resized.png</file>
-        <file>img/red_circle_resized.png</file>
+        <file>img/stone.svg</file>
+        <file>img/leaf.svg</file>
     </qresource>
 </RCC>

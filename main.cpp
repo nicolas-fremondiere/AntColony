@@ -3,7 +3,9 @@
 #include <QApplication>
 #include <QPushButton>
 #include <vector>
-#include <src/AntFighter.h>
+#include <QScreen>
+#include <src/Grid.h>
+
 
 #define M 50
 #define N 100
@@ -13,46 +15,41 @@ int main(int argc, char *argv[])
 
     QApplication app(argc, argv);
 
-    // Grid layout with 3 buttons
-    QGridLayout *gridLayout = new QGridLayout;
-    std::vector<std::vector<QPushButton*>> tabButton(M, std::vector<QPushButton*>(N));
+    std::pair<int,int> size(N,M);
 
-    std::pair<int,int> size(M,N);
-
-    for(int i=0;i<size.first;i++)
-    {
-        for(int j=0;j<size.second;j++)
-        {
-            tabButton.at(i).at(j) = new QPushButton("");
-            tabButton.at(i).at(j)->resize(15,15);
-            tabButton.at(i).at(j)->setContentsMargins(0,0,0,0);
-            //tabButton.at(i).at(j)->setStyleSheet("border: none;");
-            gridLayout->addWidget(tabButton.at(i).at(j),i,j,1,1);
-        }
-    }
-
-
-
-    AntFighter myAnt(<3,3>);
+    Grid *grid = new Grid(size);
 
 
 
 
+    // Test
 
 
 
-    //For pheromone?
     tabButton.at(21).at(30)->setStyleSheet("background-color: red;");
     tabButton.at(21).at(30)->setDisabled(true);
 
-    //For ants
     QPixmap pixmap(":/ressources/img/ant_side.svg");
 
     QIcon ButtonIcon(pixmap);
 
+    QPixmap pixmap2(":/ressources/img/stone.svg");
+
+    QIcon ButtonIcon2(pixmap2);
+
+    QPixmap pixmap3(":/ressources/img/leaf.svg");
+
+    QIcon ButtonIcon3(pixmap3);
 
     tabButton.at(3).at(3)->setIcon(ButtonIcon);
 
+    tabButton.at(3).at(4)->setIcon(ButtonIcon2);
+    tabButton.at(3).at(5)->setIcon(ButtonIcon2);
+    tabButton.at(3).at(6)->setIcon(ButtonIcon2);
+    tabButton.at(2).at(4)->setIcon(ButtonIcon2);
+    tabButton.at(2).at(5)->setIcon(ButtonIcon2);
+
+    tabButton.at(3).at(20)->setIcon(ButtonIcon3);
 
     // Create a widget
     QWidget *w = new QWidget();
@@ -65,13 +62,19 @@ int main(int argc, char *argv[])
     // Window title
     w->setWindowTitle("Grid Layouts");
 
-    w->setFixedSize(QSize(1280,920));
+
+    QScreen *screen = QGuiApplication::primaryScreen();
+    QRect  screenGeometry = screen->geometry();
+    int height = screenGeometry.height();
+    int width = screenGeometry.width();
+
+
+    w->setFixedSize(QSize(width,height-70));
 
     w->setStyleSheet("background-color: rgb(255,255,255);");
 
     // Display
     w->show();
-
     // Event loop
     return app.exec();
 }

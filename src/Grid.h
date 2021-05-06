@@ -11,7 +11,8 @@
 
 class Grid {
 public:
-
+    Grid(std::pair<int,int> size);
+    ~Grid();
 
 private:
     std::pair<int,int> _size;
@@ -20,8 +21,7 @@ private:
     std::vector<std::vector<Obstacle*>> _obstacles;
     std::vector<std::vector<Pheromone>> _pheromones;
     std::vector<std::vector<Ant*>> _ants;
-
-    std::vector<Colony> _colonies;
+    std::vector<Colony*> _colonies;
 
 };
 

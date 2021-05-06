@@ -10,10 +10,32 @@ CONFIG += c++11
 
 SOURCES += \
     main.cpp \
-    mainwindow.cpp
+    mainwindow.cpp \
+    src/AntEgg.cpp \
+    src/AntFighter.cpp \
+    src/AntLarva.cpp \
+    src/AntQueen.cpp \
+    src/AntWorker.cpp \
+    src/Colony.cpp \
+    src/Food.cpp \
+    src/Grid.cpp \
+    src/Obstacle.cpp \
+    src/Pheromone.cpp
 
 HEADERS += \
-    mainwindow.h
+    mainwindow.h \
+    src/Ant.h \
+    src/AntEgg.h \
+    src/AntFighter.h \
+    src/AntLarva.h \
+    src/AntQueen.h \
+    src/AntWorker.h \
+    src/Colony.h \
+    src/Food.h \
+    src/Grid.h \
+    src/Obstacle.h \
+    src/Pheromone.h \
+    src/include_tools.h
 
 FORMS += \
     mainwindow.ui
@@ -28,3 +50,6 @@ else: unix:!android: target.path = /opt/$${TARGET}/bin
 
 RESOURCES += \
     ant.qrc
+
+DISTFILES += \
+    src/CMakeLists.txt

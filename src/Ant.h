@@ -12,8 +12,8 @@ public:
     _color(color),
     _maxHP(maxHp),
     _currentHP(currentHp),
-    _coord(coord),
-    _damageByHunger(damageByHunger)
+    _damageByHunger(damageByHunger),
+    _coord(coord)
     {}
 
     virtual ~Ant() {
