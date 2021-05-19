@@ -6,23 +6,17 @@
 
 class Pheromone {
 public:
-    Pheromone(const std::pair<int, int> &coord, bool foodAhead, float concentration, int colonyId);
+    Pheromone(std::pair<int, int> &coord, float concentration=0.0);
 
     const std::pair<int, int> &getCoord() const;
 
     void setCoord(const std::pair<int, int> &coord);
 
-    bool isFoodAhead() const;
-
-    void setFoodAhead(bool foodAhead);
 
     float getConcentration() const;
 
     void setConcentration(float concentration);
 
-    int getColonyId() const;
-
-    void setColonyId(int colonyId);
 
 private:
 

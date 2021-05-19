@@ -2,11 +2,15 @@
 
 #include "Colony.h"
 
-Colony::Colony(std::pair<int,int> coord, std::vector<Ant> ants, int foodStorage) :
+Colony::Colony(std::pair<int,int> coord, std::vector<Ant*> ants, int foodStorage) :
         _coord(coord),
         _ants(ants),
         _foodStorage(foodStorage)
 {
+
+    for( Ant* ant : _ants ) {
+        ant->setColony(this);
+    }
 
 }
 
@@ -19,11 +23,11 @@ void Colony::setCoord(const std::pair<int, int> &coord) {
     _coord = coord;
 }
 
-const std::vector<Ant> &Colony::getAnts() const {
+const std::vector<Ant*> Colony::getAnts() const {
     return _ants;
 }
 
-void Colony::setAnts(const std::vector<Ant> &ants) {
+void Colony::setAnts(std::vector<Ant*> ants) {
     _ants = ants;
 }
 

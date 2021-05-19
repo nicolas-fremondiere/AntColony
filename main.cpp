@@ -4,65 +4,32 @@
 #include <QPushButton>
 #include <vector>
 #include <QScreen>
-#include <src/Grid.h>
+#include <src/GridManager.h>
 
 
-#define M 50
-#define N 100
+
 
 int main(int argc, char *argv[])
 {
 
     QApplication app(argc, argv);
 
-    std::pair<int,int> size(N,M);
-
-    Grid *grid = new Grid(size);
-
-
-
-
-    // Test
-
-
-
-    tabButton.at(21).at(30)->setStyleSheet("background-color: red;");
-    tabButton.at(21).at(30)->setDisabled(true);
-
-    QPixmap pixmap(":/ressources/img/ant_side.svg");
-
-    QIcon ButtonIcon(pixmap);
-
-    QPixmap pixmap2(":/ressources/img/stone.svg");
-
-    QIcon ButtonIcon2(pixmap2);
-
-    QPixmap pixmap3(":/ressources/img/leaf.svg");
-
-    QIcon ButtonIcon3(pixmap3);
-
-    tabButton.at(3).at(3)->setIcon(ButtonIcon);
-
-    tabButton.at(3).at(4)->setIcon(ButtonIcon2);
-    tabButton.at(3).at(5)->setIcon(ButtonIcon2);
-    tabButton.at(3).at(6)->setIcon(ButtonIcon2);
-    tabButton.at(2).at(4)->setIcon(ButtonIcon2);
-    tabButton.at(2).at(5)->setIcon(ButtonIcon2);
-
-    tabButton.at(3).at(20)->setIcon(ButtonIcon3);
+    GridManager &grid = GridManager::getInstance();
+    grid.init(gridSize);
 
     // Create a widget
     QWidget *w = new QWidget();
 
     // Set the grid layout as a main layout
-    w->setLayout(gridLayout);
+    w->setLayout(&grid);
 
 
-    gridLayout->setSpacing(0);
+    grid.setSpacing(0);
     // Window title
     w->setWindowTitle("Grid Layouts");
 
 
+    //get screen size
     QScreen *screen = QGuiApplication::primaryScreen();
     QRect  screenGeometry = screen->geometry();
     int height = screenGeometry.height();
@@ -75,6 +42,13 @@ int main(int argc, char *argv[])
 
     // Display
     w->show();
+
+    for (int i=0;i<10;i++)
+    {
+        GridManager::getInstance().display(ANT_IMG,std::make_pair(20,i));
+    }
+
+
     // Event loop
     return app.exec();
 }

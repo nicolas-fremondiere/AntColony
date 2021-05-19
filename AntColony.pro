@@ -18,7 +18,7 @@ SOURCES += \
     src/AntWorker.cpp \
     src/Colony.cpp \
     src/Food.cpp \
-    src/Grid.cpp \
+    src/GridManager.cpp \
     src/Obstacle.cpp \
     src/Pheromone.cpp
 
@@ -32,7 +32,7 @@ HEADERS += \
     src/AntWorker.h \
     src/Colony.h \
     src/Food.h \
-    src/Grid.h \
+    src/GridManager.h \
     src/Obstacle.h \
     src/Pheromone.h \
     src/include_tools.h

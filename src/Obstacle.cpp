@@ -1,7 +1,12 @@
 
 #include "Obstacle.h"
+#include "GridManager.h"
 
-Obstacle::Obstacle(const std::pair<int, int> &coord) : _coord(coord) {}
+
+Obstacle::Obstacle(std::pair<int, int> &coord) : _coord(coord)
+{
+    GridManager::getInstance().display(STONE_IMG,coord);
+}
 
 const std::pair<int, int> &Obstacle::getCoord() const {
     return _coord;

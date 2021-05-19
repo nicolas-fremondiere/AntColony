@@ -1,6 +1,9 @@
 #include "include_tools.h"
+
 #ifndef ANTCOLONY_ANT_H
 #define ANTCOLONY_ANT_H
+
+class Colony;
 
 // Ant.h
 class Ant
@@ -63,6 +66,15 @@ public:
         _coord = coord;
     }
 
+    Colony* getColony() const {
+        return _myColony;
+    }
+
+
+    void setColony(Colony* myColony) {
+        if(_myColony==NULL)
+            _myColony = myColony;
+    }
 
 
 private:
@@ -72,6 +84,7 @@ private:
     int _currentHP;
     int _damageByHunger;
     std::pair<int,int> _coord;
+    Colony* _myColony;
 };
 
 #endif //ANTCOLONY_ANT_H

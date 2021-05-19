@@ -1,7 +1,7 @@
 
 
 #include "AntFighter.h"
-
+#include "GridManager.h"
 
 AntFighter::AntFighter(std::pair<int, int> coord,int age, int color, int maxHp, int currentHp, bool haveFood,
                        int quantityOfFood,int damageByHunger,int quantityMaxOfFood):
@@ -10,7 +10,7 @@ AntFighter::AntFighter(std::pair<int, int> coord,int age, int color, int maxHp, 
         _quantityOfFood(quantityOfFood),
         _quantityMaxOfFood(quantityMaxOfFood)
 {
-
+    GridManager::getInstance().display(ANT_IMG,coord);
 }
 
 

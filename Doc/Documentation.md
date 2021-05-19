@@ -51,10 +51,10 @@ We stated that the ant will have a fix age at which they will evolve.
 - [x] Make all the classes, constructos/destructors and accessors
 - [ ] Code a function to make an ant move - **Chloé**
 - [ ] Display a colony by calling the constructor of the class - **Nicolas**
-- [ ] Display a food source by calling the constructor of the class - **Chloé**
-- [ ] Display and obstacle by calling the constructor of the class - **Chloé**
+- [x] Display a food source by calling the constructor of the class - **Chloé**
+- [x] Display and obstacle by calling the constructor of the class - **Chloé**
 - [ ] Make the pheromone display depending on its concentration (color) - **Nicolas**
-- [ ] Initialize a grid with default values - **Nicolas**
+- [x] Initialize a grid with default values - **Nicolas**
 - [ ] Display the counter of the egg,larva,worker and fighter -  **Chloé**
 - [ ] Develop the round system - **Nicolas**
 - [ ] Make the queen produce egg - **Chloé**
