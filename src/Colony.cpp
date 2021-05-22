@@ -2,7 +2,7 @@
 #include "Colony.h"
 #include "GridManager.h"
 #include "AntQueen.h"
-#include "AntWorker.h"
+#include "AntFighter.h"
 
 Colony::Colony(std::pair<int,int> coord, int foodStorage) :
         _coord(coord),
@@ -19,9 +19,9 @@ Colony::Colony(std::pair<int,int> coord, int foodStorage) :
     _ants.push_back(new AntQueen(coord));
     for (int i=0;i<5;i++)
     {
-        AntWorker *newWorker = new AntWorker(coord);
-        _ants.push_back(newWorker);
-        _waitArea.push_back(newWorker);
+        AntFighter *newFighter = new AntFighter(coord);
+        _ants.push_back(newFighter);
+        _waitArea.push_back(newFighter);
     }
 }
 
@@ -48,4 +48,9 @@ int Colony::getFoodStorage() const {
 
 void Colony::setFoodStorage(int foodStorage) {
     _foodStorage = foodStorage;
+}
+
+std::vector<Ant*> Colony::getWaitArea()
+{
+    return _waitArea;
 }

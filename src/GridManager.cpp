@@ -78,7 +78,6 @@ void GridManager::getInfoColony(Colony colony)
 
 
 }
-
 std::vector<std::vector<QPushButton*>> GridManager::getButtonGrid()
 {
     return _buttonGrid;
@@ -88,6 +87,61 @@ std::vector<std::vector<Pheromone*>> GridManager::getPheromones()
 {
     return _pheromones;
 }
+std::vector<std::vector<Ant*>> GridManager::getAnts()
+{
+    return _ants;
+}
+
+std::vector<Colony*> GridManager::getColonies()
+{
+    return _colonies;
+}
+
+Cell GridManager::getElementByCoord(std::pair<int,int> coord)
+{
+    //If out of bounds
+    if(coord.first<0 || coord.second<0 || coord.first > gridSize.first || coord.second > gridSize.second)
+        return Cell::OOB;
+
+    if( _ants.at(coord.first).at(coord.second)!=NULL )
+        return Cell::ANT;
+    if( _obstacles.at(coord.first).at(coord.second)!=NULL )
+        return Cell::OBSTACLE;
+    if( _foods.at(coord.first).at(coord.second)!=NULL )
+        return Cell::FOOD;
+
+    for (Colony* c: _colonies)
+        if( c !=NULL )
+            return Cell::COLONY;
+
+    return Cell::FREE;
+}
+
+void GridManager::getOutOfHere()
+{
+
+    for (Colony* c: _colonies)
+    {
+        for(int i=0 ;i<3 ;i++)
+        {
+            for(int j=0 ;j<3 ;j++)
+            {
+
+                if(getElementByCoord(c->getCoord()) == Cell::FREE)
+                {
+                    GridManager::getInstance().get
+                    c->getAnts().pop_back()
+                }
+            }
+        }
+    }
+
+}
+
+
+
+
+
 
 void GridManager::display(const char* rcLink,std::pair<int,int> pos)
 {
@@ -95,6 +149,8 @@ void GridManager::display(const char* rcLink,std::pair<int,int> pos)
     QIcon ButtonIcon(pixmap);
     _buttonGrid.at(pos.first).at(pos.second)->setIcon(ButtonIcon);
 }
+
+
 
 
 
