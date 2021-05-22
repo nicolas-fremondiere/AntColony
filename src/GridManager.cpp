@@ -71,7 +71,10 @@ std::vector<std::vector<QPushButton*>> GridManager::getButtonGrid()
     return _buttonGrid;
 }
 
-
+std::vector<std::vector<Pheromone*>> GridManager::getPheromones()
+{
+    return _pheromones;
+}
 
 void GridManager::display(const char* rcLink,std::pair<int,int> pos)
 {

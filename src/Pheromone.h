@@ -12,11 +12,10 @@ public:
 
     void setCoord(const std::pair<int, int> &coord);
 
-
     float getConcentration() const;
 
     void setConcentration(float concentration);
-
+    void updateDisplay();
 
 private:
 

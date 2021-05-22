@@ -19,6 +19,7 @@ public:
     ~GridManager();
     static GridManager& getInstance();
     std::vector<std::vector<QPushButton*>> getButtonGrid();
+    std::vector<std::vector<Pheromone*>> getPheromones();
     void init(std::pair<int,int> size);
     void display(const char* rcLink,std::pair<int,int> pos);
 

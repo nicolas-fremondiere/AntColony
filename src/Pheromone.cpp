@@ -1,6 +1,6 @@
 
 #include "Pheromone.h"
-
+#include "GridManager.h"
 Pheromone::Pheromone(std::pair<int, int> &coord, float concentration) :
     _coord(coord), _concentration(concentration) {}
 
@@ -21,3 +21,16 @@ void Pheromone::setConcentration(float concentration) {
     _concentration = concentration;
 }
 
+void Pheromone::updateDisplay(){
+    int concentration = 255-this->_concentration;
+    if(concentration<0)
+        concentration=0;
+
+
+    std::string concentrationStr = std::to_string(concentration);
+    char* char_style;
+    std::string str_style("background-color: rgb(255," + concentrationStr + ",255); border: none;");
+    char_style = &str_style[0];;
+
+    GridManager::getInstance().getButtonGrid().at(_coord.first).at(_coord.second)->setStyleSheet(char_style);
+}
