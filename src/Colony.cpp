@@ -1,15 +1,27 @@
 
-
 #include "Colony.h"
+#include "GridManager.h"
+#include "AntQueen.h"
+#include "AntWorker.h"
 
-Colony::Colony(std::pair<int,int> coord, std::vector<Ant*> ants, int foodStorage) :
+Colony::Colony(std::pair<int,int> coord, int foodStorage) :
         _coord(coord),
-        _ants(ants),
         _foodStorage(foodStorage)
 {
 
-    for( Ant* ant : _ants ) {
-        ant->setColony(this);
+    //for( Ant* ant : _ants ) {
+    //    ant->setColony(this);
+    //}
+
+    GridManager::getInstance().display(HOUSE_IMG,coord);
+
+    // Initialization of the population in the colony by default
+    _ants.push_back(new AntQueen(coord));
+    for (int i=0;i<5;i++)
+    {
+        AntWorker *newWorker = new AntWorker(coord);
+        _ants.push_back(newWorker);
+        _waitArea.push_back(newWorker);
     }
 
 }

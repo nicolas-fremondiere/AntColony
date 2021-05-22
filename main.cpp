@@ -36,7 +36,7 @@ int main(int argc, char *argv[])
     int width = screenGeometry.width();
 
 
-    w->setFixedSize(QSize(width,height-70));
+    w->setFixedSize(QSize(width,height-100));
 
     w->setStyleSheet("background-color: rgb(255,255,255);");
 

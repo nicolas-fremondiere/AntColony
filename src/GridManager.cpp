@@ -52,7 +52,6 @@ void GridManager::init(std::pair<int,int> size)
     }
 
     //Initialize the foods by default
-
     std::vector<std::pair<int,int>> vectorPosFood={{25,25},{26,25},{24,25},{20,27}};
     for (std::pair<int,int>& pos: vectorPosFood)
     {
@@ -60,9 +59,20 @@ void GridManager::init(std::pair<int,int> size)
     }
 
     _ants.at(1).at(1)=new AntFighter(std::make_pair(1,1));
-    //std::pair<int,int> posColony(0,1);
-    //std::vector<Ant*> vectorAnt={_ants.at(1).at(1)};
-    //_colonies.at(0) = new Colony(posColony,vectorAnt);
+
+    //Initialize the colony by default
+    std::pair<int,int> posColony (size.first/2,size.second/2);
+    Colony *firstColony = new Colony(posColony);
+    _colonies.push_back(firstColony);
+
+    for(const auto& colony: _colonies) {
+        connect(_buttonGrid.at(posColony.first).at(posColony.second),SIGNAL(clicked()),SLOT(getInfoColony(colony)));
+    }
+
+}
+
+void GridManager::getInfoColony(Colony colony)
+{
 
 }
 

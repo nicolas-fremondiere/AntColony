@@ -20,6 +20,7 @@ public:
     static GridManager& getInstance();
     void init(std::pair<int,int> size);
     void display(const char* rcLink,std::pair<int,int> pos);
+    void getInfoColony(Colony colony);
 
 private:
     std::pair<int,int> _size;
