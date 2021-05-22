@@ -1,6 +1,6 @@
 #include "GridManager.h"
 #include "AntFighter.h"
-
+#include <QTimer>
 
 
 
@@ -59,12 +59,18 @@ void GridManager::init(std::pair<int,int> size)
        _foods.at(pos.first).at(pos.second) = new Food(pos) ;
     }
 
-    _ants.at(1).at(1)=new AntFighter(std::make_pair(1,1));
     //std::pair<int,int> posColony(0,1);
-    //std::vector<Ant*> vectorAnt={_ants.at(1).at(1)};
-    //_colonies.at(0) = new Colony(posColony,vectorAnt);
+
+    //_colonies.at(0) = new Colony(posColony);
+
 
 }
+
+std::vector<std::vector<QPushButton*>> GridManager::getButtonGrid()
+{
+    return _buttonGrid;
+}
+
 
 
 void GridManager::display(const char* rcLink,std::pair<int,int> pos)

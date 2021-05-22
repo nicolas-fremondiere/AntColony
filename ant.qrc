@@ -3,5 +3,6 @@
         <file>img/ant_side.svg</file>
         <file>img/stone.svg</file>
         <file>img/leaf.svg</file>
+        <file>img/house.svg</file>
     </qresource>
 </RCC>

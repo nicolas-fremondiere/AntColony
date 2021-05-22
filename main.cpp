@@ -5,7 +5,7 @@
 #include <vector>
 #include <QScreen>
 #include <src/GridManager.h>
-
+#include <EventLoop.h>
 
 
 
@@ -36,18 +36,13 @@ int main(int argc, char *argv[])
     int width = screenGeometry.width();
 
 
-    w->setFixedSize(QSize(width,height-70));
-
+    w->setFixedSize(QSize(width,height-100));
     w->setStyleSheet("background-color: rgb(255,255,255);");
 
     // Display
     w->show();
 
-    for (int i=0;i<10;i++)
-    {
-        GridManager::getInstance().display(ANT_IMG,std::make_pair(20,i));
-    }
-
+    EventLoop eventl;
 
     // Event loop
     return app.exec();

@@ -11,7 +11,6 @@ Colony::Colony(std::pair<int,int> coord, std::vector<Ant*> ants, int foodStorage
     for( Ant* ant : _ants ) {
         ant->setColony(this);
     }
-
 }
 
 

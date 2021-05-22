@@ -50,7 +50,7 @@ We stated that the ant will have a fix age at which they will evolve.
 - [x] Prototype the IHM
 - [x] Make all the classes, constructos/destructors and accessors
 - [ ] Code a function to make an ant move - **Chloé**
-- [ ] Display a colony by calling the constructor of the class - **Nicolas**
+- [ ] Display a colony by calling the constructor of the class - **Chloé**
 - [x] Display a food source by calling the constructor of the class - **Chloé**
 - [x] Display and obstacle by calling the constructor of the class - **Chloé**
 - [ ] Make the pheromone display depending on its concentration (color) - **Nicolas**
@@ -66,3 +66,13 @@ We stated that the ant will have a fix age at which they will evolve.
 - [ ] On click, make food or obstacles (left or right click) - **Nicolas**
 - [ ] **Optional** : Make a new queen
 - [ ] **Optional** : Make the unitary tests
+
+Dans AntFighter :
+
+directionx= 0 ||1 ||-1
+
+fourmi.at(coord.first+directionx).at(coord.first+directiony) = this;
+fourmi.at(coord.first).at(coord.first)=NULL;
+coord.second ++;
+removeDisplay(coord.first).at(coord.first)
+display(ANT_IMG,)
