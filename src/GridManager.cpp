@@ -126,11 +126,10 @@ void GridManager::getOutOfHere()
         {
             for(int j=0 ;j<3 ;j++)
             {
-
                 if(getElementByCoord(c->getCoord()) == Cell::FREE)
                 {
-                    GridManager::getInstance().get
-                    c->getAnts().pop_back()
+                    GridManager::getInstance().getAnts().at(i).at(j)= c->getWaitArea().back();
+                    c->getWaitArea().pop_back();
                 }
             }
         }

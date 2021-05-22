@@ -34,7 +34,7 @@ void Colony::setCoord(const std::pair<int, int> &coord) {
     _coord = coord;
 }
 
-const std::vector<Ant*> Colony::getAnts() const {
+std::vector<Ant*> Colony::getAnts() const {
     return _ants;
 }
 

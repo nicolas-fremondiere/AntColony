@@ -13,13 +13,13 @@ public:
 
     void setCoord(const std::pair<int, int> &coord);
 
-    const std::vector<Ant*> getAnts() const;
-
-    void setAnts(std::vector<Ant*> ants);
+    std::vector<Ant*> getAnts() const;
 
     int getFoodStorage() const;
 
     void setFoodStorage(int foodStorage);
+
+    std::vector<Ant*> getWaitArea();
 
 
 private:

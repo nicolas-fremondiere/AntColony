@@ -20,9 +20,13 @@ public:
     static GridManager& getInstance();
     std::vector<std::vector<QPushButton*>> getButtonGrid();
     std::vector<std::vector<Pheromone*>> getPheromones();
+    std::vector<std::vector<Ant*>> getAnts();
+    std::vector<Colony*> getColonies();
     void init(std::pair<int,int> size);
     void display(const char* rcLink,std::pair<int,int> pos);
     void getInfoColony(Colony colony);
+    Cell getElementByCoord(std::pair<int,int> coord);
+    void getOutOfHere();
 
 private:
     std::pair<int,int> _size;
