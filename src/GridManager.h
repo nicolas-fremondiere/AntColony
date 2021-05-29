@@ -12,6 +12,15 @@
 
 const std::pair<int,int> gridSize(50,100);
 
+enum Cell{
+    OOB,
+    FREE,
+    COLONY,
+    ANT,
+    FOOD,
+    OBSTACLE
+};
+
 
 class GridManager :public QGridLayout{
 public:

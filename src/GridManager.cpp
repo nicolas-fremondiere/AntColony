@@ -64,20 +64,11 @@ void GridManager::init(std::pair<int,int> size)
     std::pair<int,int> posColony (size.first/2,size.second/2);
     Colony *firstColony = new Colony(posColony);
     _colonies.push_back(firstColony);
-
-    for(const auto& colony: _colonies) {
-        connect(_buttonGrid.at(posColony.first).at(posColony.second),SIGNAL(clicked()),SLOT(getInfoColony(colony)));
-    }
-
 }
 
-void GridManager::getInfoColony(Colony colony)
-{
 
-    //_colonies.at(0) = new Colony(posColony);
+void GridManager::getInfoColony(Colony colony){}
 
-
-}
 std::vector<std::vector<QPushButton*>> GridManager::getButtonGrid()
 {
     return _buttonGrid;
@@ -100,44 +91,41 @@ std::vector<Colony*> GridManager::getColonies()
 Cell GridManager::getElementByCoord(std::pair<int,int> coord)
 {
     //If out of bounds
-    if(coord.first<0 || coord.second<0 || coord.first > gridSize.first || coord.second > gridSize.second)
+    if(coord.first<0 || coord.second<0 || coord.first > gridSize.first || coord.second > gridSize.second) {
         return Cell::OOB;
-
-    if( _ants.at(coord.first).at(coord.second)!=NULL )
+    }else if( _ants.at(coord.first).at(coord.second)!=NULL ) {
         return Cell::ANT;
-    if( _obstacles.at(coord.first).at(coord.second)!=NULL )
+    } else if( _obstacles.at(coord.first).at(coord.second)!=NULL ){
         return Cell::OBSTACLE;
-    if( _foods.at(coord.first).at(coord.second)!=NULL )
+    }else if( _foods.at(coord.first).at(coord.second)!=NULL ) {
         return Cell::FOOD;
+    }
 
-    for (Colony* c: _colonies)
-        if( c !=NULL )
+    for (Colony* c: _colonies){
+        if((c->getCoord().first == coord.first) && (c->getCoord().second == coord.second)) {
             return Cell::COLONY;
+        }
+    }
 
     return Cell::FREE;
 }
 
 void GridManager::getOutOfHere()
 {
-
-    for (Colony* c: _colonies)
-    {
-        for(int i=0 ;i<3 ;i++)
-        {
-            for(int j=0 ;j<3 ;j++)
-            {
-                if(getElementByCoord(c->getCoord()) == Cell::FREE)
+    for (Colony* c: _colonies) {
+        for(int i=-1 ;i<2 ;i++) {
+            for(int j=-1 ;j<2 ;j++) {
+                std::pair<int,int> newCoord (c->getCoord().first + i, c->getCoord().second +j );
+                if(getElementByCoord(newCoord) == Cell::FREE && !c->getWaitArea().empty())
                 {
-                    GridManager::getInstance().getAnts().at(i).at(j)= c->getWaitArea().back();
-                    c->getWaitArea().pop_back();
+                    c->getWaitArea().back()->moveTo(newCoord);
+                    c->popBackWaitArea();
+
                 }
             }
         }
     }
-
 }
-
-
 
 
 

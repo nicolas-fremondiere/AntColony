@@ -15,11 +15,15 @@ public:
 
     std::vector<Ant*> getAnts() const;
 
+    void setAnts(std::vector<Ant*> ants);
+
     int getFoodStorage() const;
 
     void setFoodStorage(int foodStorage);
 
-    std::vector<Ant*> getWaitArea();
+    std::vector<Ant*>& getWaitArea();
+
+    void popBackWaitArea();
 
 
 private:

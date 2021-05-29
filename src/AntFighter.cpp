@@ -4,13 +4,13 @@
 #include "GridManager.h"
 
 AntFighter::AntFighter(std::pair<int, int> coord,int age, int color, int maxHp, int currentHp, bool haveFood,
-                       int quantityOfFood,int damageByHunger,int quantityMaxOfFood):
-        Ant(coord,age, color, maxHp, currentHp,damageByHunger),
+                       int quantityOfFood,int damageByHunger,int quantityMaxOfFood, bool displayed):
+        Ant(coord,age, color, maxHp, currentHp, damageByHunger),
         _haveFood(haveFood),
         _quantityOfFood(quantityOfFood),
-        _quantityMaxOfFood(quantityMaxOfFood)
+        _quantityMaxOfFood(quantityMaxOfFood),
+        _displayed(displayed)
 {
-    GridManager::getInstance().display(ANT_IMG,coord);
 }
 
 
@@ -37,4 +37,16 @@ int AntFighter::getQuantityMaxOfFood() const {
 void AntFighter::setQuantityMaxOfFood(int quantityMaxOfFood) {
     _quantityMaxOfFood = quantityMaxOfFood;
 }
+
+void AntFighter::moveTo(std::pair<int, int> coord) {
+    if(_displayed){
+        GridManager::getInstance().display("", getCoord());
+        GridManager::getInstance().getAnts().at(getCoord().first).at(getCoord().second) = NULL;
+    }
+
+    setCoord(coord);
+    GridManager::getInstance().display(ANT_IMG, getCoord());
+    GridManager::getInstance().getAnts().at(coord.first).at(coord.second) = this;
+}
+
 

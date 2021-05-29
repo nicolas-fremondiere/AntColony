@@ -72,9 +72,11 @@ public:
 
 
     void setColony(Colony* myColony) {
-        if(_myColony==NULL)
+        if(_myColony == NULL)
             _myColony = myColony;
     }
+
+    virtual void moveTo(std::pair<int, int> coord){}
 
 
 private:

@@ -4,6 +4,7 @@
 #include <iostream>
 #include <vector>
 #include <iterator>
+#include <QtDebug>
 
 
 #define ANT_IMG ":/ressources/img/ant_side.svg"
@@ -14,12 +15,3 @@
 
 #define HOUSE_IMG ":/ressources/img/house.svg"
 
-
-enum Cell{
-    OOB,
-    FREE,
-    COLONY,
-    ANT,
-    FOOD,
-    OBSTACLE
-}

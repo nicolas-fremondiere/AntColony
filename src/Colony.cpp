@@ -17,9 +17,10 @@ Colony::Colony(std::pair<int,int> coord, int foodStorage) :
 
     // Initialization of the population in the colony by default
     _ants.push_back(new AntQueen(coord));
-    for (int i=0;i<5;i++)
+    for (int i=0;i<3;i++)
     {
         AntFighter *newFighter = new AntFighter(coord);
+        newFighter->setColony(this);
         _ants.push_back(newFighter);
         _waitArea.push_back(newFighter);
     }
@@ -50,7 +51,10 @@ void Colony::setFoodStorage(int foodStorage) {
     _foodStorage = foodStorage;
 }
 
-std::vector<Ant*> Colony::getWaitArea()
-{
+std::vector<Ant*>& Colony::getWaitArea() {
     return _waitArea;
+}
+
+void Colony::popBackWaitArea(){
+    _waitArea.pop_back();
 }
