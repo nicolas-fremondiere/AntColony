@@ -31,8 +31,14 @@ public:
     std::vector<std::vector<Pheromone*>> getPheromones();
     std::vector<std::vector<Ant*>> getAnts();
     std::vector<Colony*> getColonies();
+
+    template <typename T> T* getElement(std::vector<std::vector<T*>>tab, std::pair<int,int> coord){return tab.at(coord.first).at(coord.second);}
+
+
     void init(std::pair<int,int> size);
     void display(const char* rcLink,std::pair<int,int> pos);
+    void remove(std::pair<int,int> pos);
+
     void getInfoColony(Colony colony);
     Cell getElementByCoord(std::pair<int,int> coord);
     void getOutOfHere();

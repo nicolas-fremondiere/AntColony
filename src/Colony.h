@@ -25,6 +25,7 @@ public:
 
     void popBackWaitArea();
 
+    void behaveAll();
 
 private:
     std::pair<int,int> _coord;

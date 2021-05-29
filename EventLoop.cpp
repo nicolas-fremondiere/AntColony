@@ -10,7 +10,20 @@ void EventLoop::update()
 
     GridManager& instanceGridManager = GridManager::getInstance();
 
+    //The ants leave the nest!
     instanceGridManager.getOutOfHere();
+
+
+
+
+
+
+
+    for(Colony* c : instanceGridManager.getColonies() ) {
+        // Order the colonies to order its ants to do something
+        c->behaveAll();
+    }
+
 
     //update the color for the pheromone
     for(int i=0; i <gridSize.first;i++) {
@@ -18,6 +31,7 @@ void EventLoop::update()
             instanceGridManager.getPheromones().at(i).at(j)->updateDisplay();
         }
     }
+
 
 }
 

@@ -112,6 +112,7 @@ Cell GridManager::getElementByCoord(std::pair<int,int> coord)
 
 void GridManager::getOutOfHere()
 {
+    //Make the ant leave the waiting queue where there is free space
     for (Colony* c: _colonies) {
         for(int i=-1 ;i<2 ;i++) {
             for(int j=-1 ;j<2 ;j++) {
@@ -120,7 +121,6 @@ void GridManager::getOutOfHere()
                 {
                     c->getWaitArea().back()->moveTo(newCoord);
                     c->popBackWaitArea();
-
                 }
             }
         }
@@ -137,6 +137,10 @@ void GridManager::display(const char* rcLink,std::pair<int,int> pos)
     _buttonGrid.at(pos.first).at(pos.second)->setIcon(ButtonIcon);
 }
 
+void GridManager::remove(std::pair<int,int> pos)
+{
+    _buttonGrid.at(pos.first).at(pos.second)->setIcon(QIcon());
+}
 
 
 

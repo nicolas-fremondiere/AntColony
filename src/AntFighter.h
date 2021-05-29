@@ -23,6 +23,8 @@ public:
 
     void moveTo(std::pair<int, int> coord);
 
+    void behave();
+
 private:
     bool _haveFood;
     int _quantityOfFood;

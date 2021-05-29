@@ -58,3 +58,13 @@ std::vector<Ant*>& Colony::getWaitArea() {
 void Colony::popBackWaitArea(){
     _waitArea.pop_back();
 }
+
+void Colony::behaveAll()
+{
+    for(Ant* ant : _ants ) {
+        ant->behave();
+    }
+}
+
+
+

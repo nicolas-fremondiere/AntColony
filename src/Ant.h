@@ -78,6 +78,7 @@ public:
 
     virtual void moveTo(std::pair<int, int> coord){}
 
+    virtual void behave(){}
 
 private:
     int _age;
