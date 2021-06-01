@@ -129,6 +129,14 @@ void GridManager::getOutOfHere()
 
 
 
+void GridManager::addAnts(Ant* ant,std::pair<int,int> coord){
+    _ants.at(coord.first).at(coord.second) = ant;
+}
+void GridManager::removeAnt(std::pair<int,int> coord)
+{
+    _ants.at(coord.first).at(coord.second) = NULL;
+}
+
 
 void GridManager::display(const char* rcLink,std::pair<int,int> pos)
 {
@@ -137,7 +145,7 @@ void GridManager::display(const char* rcLink,std::pair<int,int> pos)
     _buttonGrid.at(pos.first).at(pos.second)->setIcon(ButtonIcon);
 }
 
-void GridManager::remove(std::pair<int,int> pos)
+void GridManager::removeDisplay(std::pair<int,int> pos)
 {
     _buttonGrid.at(pos.first).at(pos.second)->setIcon(QIcon());
 }

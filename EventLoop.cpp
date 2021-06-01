@@ -18,12 +18,12 @@ void EventLoop::update()
 
 
 
-
+    qDebug() << "Before action ";
     for(Colony* c : instanceGridManager.getColonies() ) {
         // Order the colonies to order its ants to do something
         c->behaveAll();
     }
-
+    qDebug() << "After action ";
 
     //update the color for the pheromone
     for(int i=0; i <gridSize.first;i++) {
