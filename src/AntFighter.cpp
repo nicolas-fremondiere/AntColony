@@ -1,9 +1,9 @@
 
-
 #include "AntFighter.h"
 #include "GridManager.h"
 #include <QDebug>
 #include <QRandomGenerator>
+
 
 AntFighter::AntFighter(std::pair<int, int> coord,int age, int color, int maxHp, int currentHp, bool haveFood,
                        int quantityOfFood,int damageByHunger,int quantityMaxOfFood, bool displayed):
@@ -78,8 +78,8 @@ void AntFighter::moveTo(std::pair<int, int> coord) {
 
 void AntFighter::behave()
 {
-
     float decision = (float) rand()/RAND_MAX;
+
     std::vector<std::pair<int,int>> allPosibilities = getSurroundings();
 
 
@@ -99,7 +99,6 @@ void AntFighter::behave()
        }
     }
     if(freeSpace.empty())return;
-
 
     float somme = std::accumulate(freeSpace.begin(), freeSpace.end(), 0, [](const size_t previous, decltype(*freeSpace.begin()) p) { return previous+p.second; });
 
@@ -178,4 +177,3 @@ std::vector<std::pair<int,int>> AntFighter::getSurroundings(){
         std::make_pair(here.first,here.second-1)};
     return allPosibilities;
 }
-

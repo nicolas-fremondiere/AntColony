@@ -8,8 +8,6 @@ Colony::Colony(std::pair<int,int> coord, int foodStorage) :
         _coord(coord),
         _foodStorage(foodStorage)
 {
-    qDebug()<<"coord Colony : " <<_coord.first << " | "<< _coord.second;
-
     GridManager::getInstance().display(HOUSE_IMG,coord);
 
     // Initialization of the population in the colony by default
