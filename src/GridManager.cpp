@@ -44,6 +44,7 @@ void GridManager::init(std::pair<int,int> size)
             _pheromones.at(i).at(j) = new Pheromone(posPheromone);
         }
     }
+
     //Initialize the obstacles by default
     std::vector<std::pair<int,int>> vectorPosObsacles={{19,25},{20,25},{22,25},{20,26}};
     for (std::pair<int,int>& pos: vectorPosObsacles)
@@ -127,6 +128,22 @@ void GridManager::getOutOfHere()
     }
 }
 
+void GridManager::generateFoodObstacle(int type){
+
+    std::pair<int,int> coordGenerated;
+    coordGenerated.first = rand() % _size.first;
+    coordGenerated.second = rand() % _size.second;
+
+    if(getElementByCoord(coordGenerated) == Cell::FREE){
+        if(type == 1){
+            _foods.at(coordGenerated.first).at(coordGenerated.second) = new Food(coordGenerated) ;
+        }else if(type == 2){
+            _obstacles.at(coordGenerated.first).at(coordGenerated.second) = new Obstacle(coordGenerated);
+        }
+    }else{
+
+    }
+}
 
 
 

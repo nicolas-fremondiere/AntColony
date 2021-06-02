@@ -1,9 +1,9 @@
 
-
 #include "AntFighter.h"
 #include "GridManager.h"
 #include <QDebug>
 #include <QRandomGenerator>
+
 
 AntFighter::AntFighter(std::pair<int, int> coord,int age, int color, int maxHp, int currentHp, bool haveFood,
                        int quantityOfFood,int damageByHunger,int quantityMaxOfFood, bool displayed):
@@ -58,19 +58,18 @@ void AntFighter::moveTo(std::pair<int, int> coord) {
 
 void AntFighter::behave()
 {
-
     float decision = (float) rand()/RAND_MAX;
-    qDebug() << "random : "<< decision;
+//    qDebug() << "random : "<< decision;
 
     std::pair<int,int> here = getCoord();
     std::pair<int,int> allPosibilities[] = {
         std::make_pair(here.first-1,here.second),
         std::make_pair(here.first,here.second+1),
         std::make_pair(here.first+1,here.second),
-        std::make_pair(here.first,here.second-1)};
+        std::make_pair(here.first,here.second-1)
+    };
 
-
-    qDebug() << "coord : "<< here.first<<here.second;
+//    qDebug() << "coord : "<< here.first<<here.second;
 
 
     GridManager& instGM = GridManager::getInstance();
@@ -81,15 +80,12 @@ void AntFighter::behave()
        if(instGM.getElementByCoord(coord) == Cell::FREE)
        {
            freeSpace[coord] = instGM.getElement(instGM.getPheromones(),coord)->getConcentration() + 20;
-           qDebug() << "free : "<< coord.first<<coord.second;
-
+//           qDebug() << "free : "<< coord.first << coord.second;
        }
     }
     if(freeSpace.empty())return;
 
-
     float somme = std::accumulate(freeSpace.begin(), freeSpace.end(), 0, [](const size_t previous, decltype(*freeSpace.begin()) p) { return previous+p.second; });
-
 
     std::map<std::pair<int,int>,float> probabilities;
     for(auto prob : freeSpace) {
@@ -97,24 +93,24 @@ void AntFighter::behave()
     }
 
 
-    qDebug() << "somme : "<< somme;
-    qDebug() << "decision : "<< decision;
+//    qDebug() << "somme : "<< somme;
+//    qDebug() << "decision : "<< decision;
 
     std::pair<int,int> finaldecision;
     float gauge =0;
     for(auto prob : probabilities) {
-        qDebug() << "freespace here : "<< prob.first.first<<"  "<<prob.first.second;
+//        qDebug() << "freespace here : " << prob.first.first << prob.first.second;
 
         gauge += prob.second;
-        qDebug() << "Gauge here : "<< gauge;
+//        qDebug() << "Gauge here : " << gauge;
 
-        if( gauge < decision)
+        if( gauge > decision)
         {
             finaldecision = prob.first;
             break;
         }
     }
-    qDebug() << "final decision : "<< finaldecision.first<<finaldecision.second;
+//    qDebug() << "final decision : " << finaldecision.first << finaldecision.second;
     moveTo(finaldecision);
 
 

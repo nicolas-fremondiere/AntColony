@@ -42,6 +42,7 @@ public:
     void getInfoColony(Colony colony);
     Cell getElementByCoord(std::pair<int,int> coord);
     void getOutOfHere();
+    void generateFoodObstacle(int type);
 
 private:
     std::pair<int,int> _size;

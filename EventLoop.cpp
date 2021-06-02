@@ -14,11 +14,6 @@ void EventLoop::update()
     instanceGridManager.getOutOfHere();
 
 
-
-
-
-
-
     for(Colony* c : instanceGridManager.getColonies() ) {
         // Order the colonies to order its ants to do something
         c->behaveAll();
@@ -32,6 +27,15 @@ void EventLoop::update()
         }
     }
 
+    //random occurrence of foods (= 1) and obstacles (=2)
+    int occurence = rand() % 100;
+    if(occurence < 20){
+        instanceGridManager.generateFoodObstacle(1);
+    }else if(occurence > 20 && occurence < 25){
+        instanceGridManager.generateFoodObstacle(2);
+    }
+
+    qDebug() << "rand number : " << occurence;
 
 }
 

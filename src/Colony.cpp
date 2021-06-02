@@ -8,11 +8,6 @@ Colony::Colony(std::pair<int,int> coord, int foodStorage) :
         _coord(coord),
         _foodStorage(foodStorage)
 {
-
-    //for( Ant* ant : _ants ) {
-    //    ant->setColony(this);
-    //}
-
     GridManager::getInstance().display(HOUSE_IMG,coord);
 
     // Initialization of the population in the colony by default
