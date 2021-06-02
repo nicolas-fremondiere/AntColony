@@ -26,7 +26,6 @@ Colony::Colony(std::pair<int,int> coord, int foodStorage) :
 
 
 std::pair<int, int> Colony::getCoord(){
-
     return _coord;
 }
 
@@ -37,6 +36,18 @@ std::vector<Ant*> Colony::getAnts() const {
 
 void Colony::setAnts(std::vector<Ant*> ants) {
     _ants = ants;
+}
+
+void Colony::addAnt(Ant* ant){
+    _ants.push_back(ant);
+}
+
+void Colony::deleteAnt(Ant* ant){
+    remove(_ants.begin(), _ants.end(), ant);
+    _ants.resize(_ants.size()-1);
+//    for(Ant* a : getAnts()){
+//        qDebug() << "Composition : " << a->getType();
+//    }
 }
 
 int Colony::getFoodStorage() const {

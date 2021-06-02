@@ -15,6 +15,10 @@ public:
 
     void setAnts(std::vector<Ant*> ants);
 
+    void addAnt(Ant *ant);
+
+    void deleteAnt(Ant* ant);
+
     int getFoodStorage() const;
 
     void setFoodStorage(int foodStorage);

@@ -15,3 +15,4 @@ int AntQueen::getTimeSinceEggLaying() const{
 void AntQueen::setTimeSinceEggLaying(int timeSinceEggLaying){
     _timeSinceEggLaying = timeSinceEggLaying;
 }
+
