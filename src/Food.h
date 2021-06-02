@@ -1,10 +1,9 @@
 
 #include "include_tools.h"
-
+#include "AntFighter.h"
 #ifndef ANTCOLONY_FOOD_H
 #define ANTCOLONY_FOOD_H
 
-class AntFighter;
 
 class Food {
 public:
@@ -22,7 +21,7 @@ public:
 
     void setHpRecovery(int hpRecovery);
 
-    int getFood(AntFighter* ant);
+    int getFoodAmount(AntFighter* ant);
 
 private:
     int _currentQuantity;

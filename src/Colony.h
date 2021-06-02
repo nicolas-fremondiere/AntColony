@@ -9,9 +9,7 @@ class Colony {
 public:
     Colony(std::pair<int,int> coord, int foodStorage=0);
 
-    const std::pair<int, int> &getCoord() const;
-
-    void setCoord(const std::pair<int, int> &coord);
+    std::pair<int, int> getCoord();
 
     std::vector<Ant*> getAnts() const;
 
@@ -22,6 +20,8 @@ public:
     void setFoodStorage(int foodStorage);
 
     std::vector<Ant*>& getWaitArea();
+
+    void addFood(int amount);
 
     void popBackWaitArea();
 

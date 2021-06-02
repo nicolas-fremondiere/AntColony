@@ -8,15 +8,15 @@ Colony::Colony(std::pair<int,int> coord, int foodStorage) :
         _coord(coord),
         _foodStorage(foodStorage)
 {
-
-    //for( Ant* ant : _ants ) {
-    //    ant->setColony(this);
-    //}
+    qDebug()<<"coord Colony : " <<_coord.first << " | "<< _coord.second;
 
     GridManager::getInstance().display(HOUSE_IMG,coord);
 
     // Initialization of the population in the colony by default
-    _ants.push_back(new AntQueen(coord));
+    AntQueen *newQueen = new AntQueen(coord);
+    newQueen->setColony(this);
+    _ants.push_back(newQueen);
+
     for (int i=0;i<3;i++)
     {
         AntFighter *newFighter = new AntFighter(coord);
@@ -27,13 +27,11 @@ Colony::Colony(std::pair<int,int> coord, int foodStorage) :
 }
 
 
-const std::pair<int, int> &Colony::getCoord() const {
+std::pair<int, int> Colony::getCoord(){
+
     return _coord;
 }
 
-void Colony::setCoord(const std::pair<int, int> &coord) {
-    _coord = coord;
-}
 
 std::vector<Ant*> Colony::getAnts() const {
     return _ants;
@@ -55,6 +53,10 @@ std::vector<Ant*>& Colony::getWaitArea() {
     return _waitArea;
 }
 
+void Colony::addFood(int amount){
+    _foodStorage += amount;
+}
+
 void Colony::popBackWaitArea(){
     _waitArea.pop_back();
 }
@@ -62,6 +64,8 @@ void Colony::popBackWaitArea(){
 void Colony::behaveAll()
 {
     for(Ant* ant : _ants ) {
+
+        qDebug() << "Colony for a ant "<< ant->getColony();
         ant->behave();
     }
 }

@@ -15,6 +15,11 @@ public:
     float getConcentration() const;
 
     void setConcentration(float concentration);
+
+    void addConcentration(int amount);
+
+    void decayConcentration(int amount);
+
     void updateDisplay();
 
 private:

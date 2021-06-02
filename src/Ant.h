@@ -81,15 +81,14 @@ public:
 
 
     void setColony(Colony* myColony) {
-        if(_myColony == NULL)
-            _myColony = myColony;
+       _myColony = myColony;
     }
 
     virtual void moveTo(std::pair<int, int> coord){}
     virtual void behave(){}
     virtual TYPE_ANT getType(){}
 
-private:
+protected:
     int _age;
     int _color;
     int _maxHP;

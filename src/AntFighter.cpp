@@ -13,6 +13,7 @@ AntFighter::AntFighter(std::pair<int, int> coord,int age, int color, int maxHp, 
         _quantityMaxOfFood(quantityMaxOfFood),
         _displayed(displayed)
 {
+    _lastPosition = coord;
 }
 
 
@@ -40,6 +41,15 @@ void AntFighter::setQuantityMaxOfFood(int quantityMaxOfFood) {
     _quantityMaxOfFood = quantityMaxOfFood;
 }
 
+std::pair<int,int> AntFighter::getLastPosition() const{
+    return _lastPosition;
+}
+
+void AntFighter::setLastPosition(std::pair<int,int> lastPosition){
+    _lastPosition = lastPosition;
+}
+
+
 void AntFighter::addFood(int foodAmount)
 {
     _quantityOfFood +=foodAmount;
@@ -52,8 +62,8 @@ void AntFighter::addFood(int foodAmount)
 void AntFighter::moveTo(std::pair<int, int> coord) {
     if(_displayed){
         GridManager::getInstance().removeDisplay(getCoord());
-
         GridManager::getInstance().removeAnt(getCoord());
+        _lastPosition = getCoord();
     }
     else
     {
@@ -72,22 +82,26 @@ void AntFighter::behave()
     float decision = (float) rand()/RAND_MAX;
     std::vector<std::pair<int,int>> allPosibilities = getSurroundings();
 
+
     GridManager& instGM = GridManager::getInstance();
     std::map<std::pair<int,int>,float> freeSpace;
     //get only the free space arround the ant
     for(std::pair<int,int> & coord : allPosibilities ) {
        if(instGM.getElementByCoord(coord) == Cell::FREE)
        {
-           freeSpace[coord] = instGM.getElement(instGM.getPheromones(),coord)->getConcentration() + 20;
-           qDebug() << "free : "<< coord.first<<coord.second;
 
+           freeSpace[coord] = instGM.getElement(instGM.getPheromones(),coord)->getConcentration() + 20;
+
+           if(_lastPosition == coord)
+           {
+               freeSpace[coord] = freeSpace[coord]/4;
+           }
        }
     }
     if(freeSpace.empty())return;
 
 
     float somme = std::accumulate(freeSpace.begin(), freeSpace.end(), 0, [](const size_t previous, decltype(*freeSpace.begin()) p) { return previous+p.second; });
-
 
     std::map<std::pair<int,int>,float> probabilities;
     for(auto prob : freeSpace) {
@@ -104,21 +118,41 @@ void AntFighter::behave()
             break;
         }
     }
-    qDebug() << "Move To  : "<< finaldecision.first<<finaldecision.second;
+    if(_haveFood)
+        instGM.getPheromones().at(_coord.first).at(_coord.second)->addConcentration(20);
+    else
+        instGM.getPheromones().at(_coord.first).at(_coord.second)->addConcentration(10);
 
     moveTo(finaldecision);
 
+    //Detect if food nearby
     Food* myFood = foodDetector();
-    if(myFood != NULL)
+    if(myFood != NULL && !_haveFood)
     {
-
-
-        //Check if
-
-
-        //remove food
+        int foodAmount = myFood->getFoodAmount(this);
+        _haveFood= true;
+        _quantityOfFood = foodAmount;
     }
 
+    //Detect if colony nearby and have food
+    std::vector<std::pair<int,int>> newSurroundings = getSurroundings();
+
+    qDebug()<<"Coord : "<< _coord.first << " | "<< _coord.second ;
+
+    Colony* mcol = _myColony;
+    for(auto pos : newSurroundings) {
+        qDebug()<<"LOL : "<< pos.first << " | "<< pos.second ;
+        qDebug()<<"Colony : " <<mcol;
+        qDebug()<<"Merde : " <<mcol->getCoord().first << " | "<< mcol->getCoord().second;
+
+
+        if(pos.first == mcol->getCoord().first && pos.second == mcol->getCoord().second && _haveFood)
+        {
+            mcol->addFood(_quantityOfFood);
+            _quantityOfFood = 0;
+            _haveFood = false;
+        }
+    }
 
 }
 

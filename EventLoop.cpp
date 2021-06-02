@@ -15,11 +15,13 @@ void EventLoop::update()
 
 
 
+    qDebug() << "Colony "<< instanceGridManager.getColonies().at(0);
 
 
 
     qDebug() << "Before action ";
     for(Colony* c : instanceGridManager.getColonies() ) {
+
         // Order the colonies to order its ants to do something
         c->behaveAll();
     }
@@ -28,6 +30,7 @@ void EventLoop::update()
     //update the color for the pheromone
     for(int i=0; i <gridSize.first;i++) {
         for(int j=0;j < gridSize.second;j++) {
+            instanceGridManager.getPheromones().at(i).at(j)->decayConcentration(2);
             instanceGridManager.getPheromones().at(i).at(j)->updateDisplay();
         }
     }
@@ -40,5 +43,5 @@ EventLoop::EventLoop(QWidget *parent)
 {
     QTimer *timer = new QTimer(this);
     connect(timer, &QTimer::timeout, this, QOverload<>::of(&EventLoop::update));
-    timer->start(1000);
+    timer->start(200);
 }

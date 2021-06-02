@@ -1,8 +1,9 @@
 #include "Ant.h"
-#include "Food.h"
 #ifndef ANTCOLONY_ANTFIGHTER_H
 #define ANTCOLONY_ANTFIGHTER_H
 
+
+class Food;
 // AntFighter.h
 class AntFighter : public Ant{
 public:
@@ -20,6 +21,11 @@ public:
     int getQuantityMaxOfFood() const;
 
     void setQuantityMaxOfFood(int quantityMaxOfFood);
+
+    std::pair<int,int> getLastPosition() const;
+
+    void setLastPosition(std::pair<int,int> lastPosition);
+
 
     void moveTo(std::pair<int, int> coord);
 
@@ -39,6 +45,7 @@ private:
     int _quantityOfFood;
     int _quantityMaxOfFood;
     bool _displayed;
+    std::pair<int,int> _lastPosition;
 };
 
 #endif //ANTCOLONY_ANTFIGHTER_H
