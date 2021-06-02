@@ -44,8 +44,6 @@ int main(int argc, char *argv[])
 
     EventLoop eventl;
 
-    eventl.setFocus();
-
     // Event loop
     return app.exec();
 }

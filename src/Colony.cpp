@@ -73,5 +73,14 @@ void Colony::eraseALl()
     }
 }
 
+int Colony::countAnt(TYPE_ANT antType)
+{
+    int sum = 0;
+    for(Ant* ant : _ants ) {
+        if(ant->getType()==antType) sum++;
+    }
+    return sum;
+}
+
 
 

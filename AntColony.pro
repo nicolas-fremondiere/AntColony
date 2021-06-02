@@ -9,6 +9,7 @@ CONFIG += c++11 static
 #DEFINES += QT_DISABLE_DEPRECATED_BEFORE=0x060000    # disables all the APIs deprecated before Qt 6.0.0
 
 SOURCES += \
+    CellButton.cpp \
     EventLoop.cpp \
     main.cpp \
     mainwindow.cpp \
@@ -24,6 +25,7 @@ SOURCES += \
     src/Pheromone.cpp
 
 HEADERS += \
+    CellButton.h \
     EventLoop.h \
     mainwindow.h \
     src/Ant.h \

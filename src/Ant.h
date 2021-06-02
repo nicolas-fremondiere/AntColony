@@ -86,7 +86,9 @@ public:
 
     virtual void moveTo(std::pair<int, int> coord){}
     virtual void behave(){}
-    virtual TYPE_ANT getType(){}
+    virtual TYPE_ANT getType(){
+        return TYPE_ANT::EGG;
+    }
 
 protected:
     int _age;

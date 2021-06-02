@@ -34,24 +34,12 @@ void EventLoop::update()
     }
 }
 
-void EventLoop::keyPressEvent(QKeyEvent *event)
-{
-    std::cout<<"WTF"<<std::endl;
-    qDebug()<<"MDR lami";
-
-    if( event->key() == Qt::Key_Space )
-    {
-        qDebug()<<"Salut lami";
-    }
-}
-
-
-
-
 
 EventLoop::EventLoop(QWidget *parent)
     : QWidget(parent)
 {
+    setFocus();
+    setFocusPolicy(Qt::StrongFocus);
     QTimer *timer = new QTimer(this);
     connect(timer, &QTimer::timeout, this, QOverload<>::of(&EventLoop::update));
     timer->start(200);

@@ -3,7 +3,6 @@
 #include <QTimer>
 
 
-
 GridManager::GridManager(){}
 
 GridManager::~GridManager()
@@ -12,8 +11,6 @@ GridManager::~GridManager()
     {
         for (int j =0 ; j < gridSize.second;j++)
         {
-            qDebug()<<"Avant "<<i<<j;
-
             if(_foods.at(i).at(j)!=NULL)
                 delete _foods.at(i).at(j);
             if(_obstacles.at(i).at(j)!=NULL)
@@ -22,9 +19,6 @@ GridManager::~GridManager()
                 delete _buttonGrid.at(i).at(j);
             if(_pheromones.at(i).at(j)!=NULL)
                 delete _pheromones.at(i).at(j);
-
-            qDebug()<<"Après "<<i<<j;
-
         }
     }
     for (Colony* col: _colonies)
@@ -62,7 +56,8 @@ void GridManager::init(std::pair<int,int> size)
         for(int j=0;j<size.second;j++)
         {
             //create a button as a square
-            _buttonGrid.at(i).at(j) = new QPushButton();
+            std::pair<int,int> newLocation(i,j);
+            _buttonGrid.at(i).at(j) = new CellButton(newLocation);
             _buttonGrid.at(i).at(j)->resize(15,15);
             _buttonGrid.at(i).at(j)->setContentsMargins(0,0,0,0);
             _buttonGrid.at(i).at(j)->setStyleSheet("border: none;");
@@ -86,8 +81,6 @@ void GridManager::init(std::pair<int,int> size)
        _foods.at(pos.first).at(pos.second) = new Food(pos) ;
     }
 
-    _ants.at(1).at(1)=new AntFighter(std::make_pair(1,1));
-
     //Initialize the colony by default
     std::pair<int,int> posColony (size.first/2,size.second/2);
     Colony *firstColony = new Colony(posColony);
@@ -97,7 +90,7 @@ void GridManager::init(std::pair<int,int> size)
 
 void GridManager::getInfoColony(Colony colony){}
 
-std::vector<std::vector<QPushButton*>> GridManager::getButtonGrid()
+std::vector<std::vector<CellButton*>> GridManager::getButtonGrid()
 {
     return _buttonGrid;
 }

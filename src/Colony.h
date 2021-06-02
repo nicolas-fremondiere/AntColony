@@ -29,6 +29,8 @@ public:
 
     void eraseALl();
 
+    int countAnt(TYPE_ANT antType);
+
 private:
     std::pair<int,int> _coord;
     std::vector<Ant*> _ants;

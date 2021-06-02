@@ -5,7 +5,7 @@
 #include "Obstacle.h"
 #include "Pheromone.h"
 #include <QGridLayout>
-#include <QPushButton>
+#include "CellButton.h"
 
 #ifndef ANTCOLONY_GRID_H
 #define ANTCOLONY_GRID_H
@@ -27,7 +27,7 @@ public:
     GridManager();
     ~GridManager();
     static GridManager& getInstance();
-    std::vector<std::vector<QPushButton*>> getButtonGrid();
+    std::vector<std::vector<CellButton*>> getButtonGrid();
     std::vector<std::vector<Pheromone*>> getPheromones();
     std::vector<std::vector<Ant*>> getAnts();
     std::vector<std::vector<Food*>> getFoods();
@@ -55,7 +55,7 @@ private:
     std::vector<std::vector<Pheromone*>> _pheromones;
     std::vector<std::vector<Ant*>> _ants;
     std::vector<Colony*> _colonies;
-    std::vector<std::vector<QPushButton*>> _buttonGrid;
+    std::vector<std::vector<CellButton*>> _buttonGrid;
 
 };
 
