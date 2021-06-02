@@ -87,6 +87,12 @@ std::vector<Colony*> GridManager::getColonies()
 {
     return _colonies;
 }
+std::vector<std::vector<Food*>> GridManager::getFoods()
+{
+    return _foods;
+}
+
+
 
 Cell GridManager::getElementByCoord(std::pair<int,int> coord)
 {

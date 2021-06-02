@@ -5,6 +5,15 @@
 
 class Colony;
 
+enum TYPE_ANT{
+    EGG,
+    LARVA,
+    WORKER,
+    FIGHTER,
+    QUEEN
+};
+
+
 // Ant.h
 class Ant
 {
@@ -77,8 +86,8 @@ public:
     }
 
     virtual void moveTo(std::pair<int, int> coord){}
-
     virtual void behave(){}
+    virtual TYPE_ANT getType(){}
 
 private:
     int _age;

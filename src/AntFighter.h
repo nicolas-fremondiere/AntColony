@@ -1,5 +1,5 @@
 #include "Ant.h"
-
+#include "Food.h"
 #ifndef ANTCOLONY_ANTFIGHTER_H
 #define ANTCOLONY_ANTFIGHTER_H
 
@@ -25,6 +25,15 @@ public:
 
     void behave();
 
+    Food* foodDetector();
+
+    void addFood(int foodAmount);
+
+    std::vector<std::pair<int,int>> getSurroundings();
+
+    TYPE_ANT getType(){
+        return TYPE_ANT::FIGHTER;
+    }
 private:
     bool _haveFood;
     int _quantityOfFood;

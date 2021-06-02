@@ -4,6 +4,8 @@
 #ifndef ANTCOLONY_FOOD_H
 #define ANTCOLONY_FOOD_H
 
+class AntFighter;
+
 class Food {
 public:
     Food( const std::pair<int, int> &coord, int hpRecovery = 10);
@@ -12,7 +14,7 @@ public:
 
     void setCurrentQuantity(int currentQuantity);
 
-    const std::pair<int, int> &getCoord() const;
+    const std::pair<int, int> getCoord();
 
     void setCoord(const std::pair<int, int> &coord);
 
@@ -20,6 +22,7 @@ public:
 
     void setHpRecovery(int hpRecovery);
 
+    int getFood(AntFighter* ant);
 
 private:
     int _currentQuantity;

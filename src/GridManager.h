@@ -30,6 +30,7 @@ public:
     std::vector<std::vector<QPushButton*>> getButtonGrid();
     std::vector<std::vector<Pheromone*>> getPheromones();
     std::vector<std::vector<Ant*>> getAnts();
+    std::vector<std::vector<Food*>> getFoods();
     std::vector<Colony*> getColonies();
 
     template <typename T> T* getElement(std::vector<std::vector<T*>>tab, std::pair<int,int> coord){return tab.at(coord.first).at(coord.second);}

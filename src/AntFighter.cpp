@@ -40,6 +40,15 @@ void AntFighter::setQuantityMaxOfFood(int quantityMaxOfFood) {
     _quantityMaxOfFood = quantityMaxOfFood;
 }
 
+void AntFighter::addFood(int foodAmount)
+{
+    _quantityOfFood +=foodAmount;
+    if(_quantityOfFood > _quantityMaxOfFood)
+        _quantityOfFood = _quantityMaxOfFood;
+}
+
+
+
 void AntFighter::moveTo(std::pair<int, int> coord) {
     if(_displayed){
         GridManager::getInstance().removeDisplay(getCoord());
@@ -61,17 +70,7 @@ void AntFighter::behave()
 {
 
     float decision = (float) rand()/RAND_MAX;
-
-    std::pair<int,int> here = getCoord();
-    std::pair<int,int> allPosibilities[] = {
-        std::make_pair(here.first-1,here.second),
-        std::make_pair(here.first,here.second+1),
-        std::make_pair(here.first+1,here.second),
-        std::make_pair(here.first,here.second-1)};
-
-
-    qDebug() << "coord : "<< here.first<<here.second;
-
+    std::vector<std::pair<int,int>> allPosibilities = getSurroundings();
 
     GridManager& instGM = GridManager::getInstance();
     std::map<std::pair<int,int>,float> freeSpace;
@@ -109,7 +108,40 @@ void AntFighter::behave()
 
     moveTo(finaldecision);
 
+    Food* myFood = foodDetector();
+    if(myFood != NULL)
+    {
+
+
+        //Check if
+
+
+        //remove food
+    }
+
 
 }
 
+
+Food* AntFighter::foodDetector(){
+    std::vector<std::pair<int,int>> allPosibilities = getSurroundings();
+    GridManager& instGM = GridManager::getInstance();
+    for(std::pair<int,int> & coord : allPosibilities ) {
+       if(instGM.getElementByCoord(coord) == Cell::FOOD)
+       {
+            return instGM.getFoods().at(coord.first).at(coord.second);
+       }
+    }
+    return NULL;
+}
+
+std::vector<std::pair<int,int>> AntFighter::getSurroundings(){
+    std::pair<int,int> here = getCoord();
+    std::vector<std::pair<int,int>> allPosibilities = {
+        std::make_pair(here.first-1,here.second),
+        std::make_pair(here.first,here.second+1),
+        std::make_pair(here.first+1,here.second),
+        std::make_pair(here.first,here.second-1)};
+    return allPosibilities;
+}
 

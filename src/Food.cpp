@@ -18,7 +18,7 @@ void Food::setCurrentQuantity(int currentQuantity) {
     _currentQuantity = currentQuantity;
 }
 
-const std::pair<int, int> &Food::getCoord() const {
+const std::pair<int, int> Food::getCoord() {
     return _coord;
 }
 
@@ -33,3 +33,22 @@ int Food::getHpRecovery() const {
 void Food::setHpRecovery(int hpRecovery) {
     _hpRecovery = hpRecovery;
 }
+
+//Get the correct amount of food
+//int Food::getFood(AntFighter* ant)
+//{
+//    if(_currentQuantity!=0)
+//    {
+//       int maxFood = ant->getQuantityMaxOfFood() - ant->getQuantityOfFood();
+//       if(_currentQuantity <= maxFood)
+//       {
+
+//       }
+//       else
+//       {
+
+//       }
+//    }
+
+//    return 0;
+//}
