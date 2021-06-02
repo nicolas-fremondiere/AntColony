@@ -3,6 +3,7 @@
 
 #include <QObject>
 #include <QWidget>
+#include <QKeyEvent>
 
 class EventLoop : public QWidget
 {
@@ -12,6 +13,7 @@ public:
 
 protected:
     virtual void update();
+    virtual void keyPressEvent(QKeyEvent *event);
 };
 
 #endif // EVENTLOOP_H

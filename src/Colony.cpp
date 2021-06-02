@@ -62,9 +62,14 @@ void Colony::popBackWaitArea(){
 void Colony::behaveAll()
 {
     for(Ant* ant : _ants ) {
-
-        qDebug() << "Colony for a ant "<< ant->getColony();
         ant->behave();
+    }
+}
+
+void Colony::eraseALl()
+{
+    for(Ant* ant : _ants ) {
+        delete ant;
     }
 }
 

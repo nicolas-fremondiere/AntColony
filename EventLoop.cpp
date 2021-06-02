@@ -6,20 +6,16 @@
 
 void EventLoop::update()
 {
-    qDebug() << "update() called";
-
     GridManager& instanceGridManager = GridManager::getInstance();
 
     //The ants leave the nest!
     instanceGridManager.getOutOfHere();
 
-    qDebug() << "Before action ";
     for(Colony* c : instanceGridManager.getColonies() ) {
 
         // Order the colonies to order its ants to do something
         c->behaveAll();
     }
-    qDebug() << "After action ";
 
     //update the color for the pheromone
     for(int i=0; i <gridSize.first;i++) {
@@ -36,10 +32,22 @@ void EventLoop::update()
     }else if(occurence > 20 && occurence < 25){
         instanceGridManager.generateFoodObstacle(2);
     }
-
-    qDebug() << "rand number : " << occurence;
-
 }
+
+void EventLoop::keyPressEvent(QKeyEvent *event)
+{
+    std::cout<<"WTF"<<std::endl;
+    qDebug()<<"MDR lami";
+
+    if( event->key() == Qt::Key_Space )
+    {
+        qDebug()<<"Salut lami";
+    }
+}
+
+
+
+
 
 EventLoop::EventLoop(QWidget *parent)
     : QWidget(parent)

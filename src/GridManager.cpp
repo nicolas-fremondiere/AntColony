@@ -6,7 +6,34 @@
 
 GridManager::GridManager(){}
 
-GridManager::~GridManager(){}
+GridManager::~GridManager()
+{
+    for (int i =0 ; i < gridSize.first;i++)
+    {
+        for (int j =0 ; j < gridSize.second;j++)
+        {
+            qDebug()<<"Avant "<<i<<j;
+
+            if(_foods.at(i).at(j)!=NULL)
+                delete _foods.at(i).at(j);
+            if(_obstacles.at(i).at(j)!=NULL)
+                delete _obstacles.at(i).at(j);
+            if(_buttonGrid.at(i).at(j)!=NULL)
+                delete _buttonGrid.at(i).at(j);
+            if(_pheromones.at(i).at(j)!=NULL)
+                delete _pheromones.at(i).at(j);
+
+            qDebug()<<"Après "<<i<<j;
+
+        }
+    }
+    for (Colony* col: _colonies)
+    {
+       col->eraseALl();
+       delete col;
+    }
+
+}
 
 GridManager& GridManager::getInstance()
 {
@@ -26,11 +53,11 @@ void GridManager::init(std::pair<int,int> size)
 
     for(int i=0;i<size.first;i++)
     {
-        _buttonGrid.at(i).resize(size.second);
-        _foods.at(i).resize(size.second);
-        _obstacles.at(i).resize(size.second);
-        _ants.at(i).resize(size.second);
-        _pheromones.at(i).resize(size.second);
+        _buttonGrid.at(i).resize(size.second,NULL);
+        _foods.at(i).resize(size.second,NULL);
+        _obstacles.at(i).resize(size.second,NULL);
+        _ants.at(i).resize(size.second,NULL);
+        _pheromones.at(i).resize(size.second,NULL);
 
         for(int j=0;j<size.second;j++)
         {

@@ -136,15 +136,8 @@ void AntFighter::behave()
     //Detect if colony nearby and have food
     std::vector<std::pair<int,int>> newSurroundings = getSurroundings();
 
-    qDebug()<<"Coord : "<< _coord.first << " | "<< _coord.second ;
-
     Colony* mcol = _myColony;
     for(auto pos : newSurroundings) {
-        qDebug()<<"LOL : "<< pos.first << " | "<< pos.second ;
-        qDebug()<<"Colony : " <<mcol;
-        qDebug()<<"Merde : " <<mcol->getCoord().first << " | "<< mcol->getCoord().second;
-
-
         if(pos.first == mcol->getCoord().first && pos.second == mcol->getCoord().second && _haveFood)
         {
             mcol->addFood(_quantityOfFood);

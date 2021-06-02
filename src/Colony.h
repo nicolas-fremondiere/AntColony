@@ -27,6 +27,8 @@ public:
 
     void behaveAll();
 
+    void eraseALl();
+
 private:
     std::pair<int,int> _coord;
     std::vector<Ant*> _ants;
