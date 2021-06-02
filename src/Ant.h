@@ -57,7 +57,7 @@ public:
     }
 
     void hungerDamage(){
-        _currentHP--;
+        _currentHP -= _damageByHunger;
     }
     int getDamageByHunger() const {
         return _damageByHunger;

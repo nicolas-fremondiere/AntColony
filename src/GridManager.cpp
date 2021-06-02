@@ -12,8 +12,6 @@ GridManager::~GridManager()
     {
         for (int j =0 ; j < gridSize.second;j++)
         {
-            qDebug()<<"Avant "<<i<<j;
-
             if(_foods.at(i).at(j)!=NULL)
                 delete _foods.at(i).at(j);
             if(_obstacles.at(i).at(j)!=NULL)
@@ -22,9 +20,6 @@ GridManager::~GridManager()
                 delete _buttonGrid.at(i).at(j);
             if(_pheromones.at(i).at(j)!=NULL)
                 delete _pheromones.at(i).at(j);
-
-            qDebug()<<"Après "<<i<<j;
-
         }
     }
     for (Colony* col: _colonies)

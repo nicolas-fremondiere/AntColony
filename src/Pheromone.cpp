@@ -1,6 +1,8 @@
 
 #include "Pheromone.h"
 #include "GridManager.h"
+
+
 Pheromone::Pheromone(std::pair<int, int> &coord, float concentration) :
     _coord(coord), _concentration(concentration) {}
 
