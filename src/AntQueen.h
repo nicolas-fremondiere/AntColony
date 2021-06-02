@@ -13,6 +13,9 @@ public:
 
     void setTimeSinceEggLaying(int timeSinceEggLaying);
 
+    TYPE_ANT getType(){
+        return TYPE_ANT::QUEEN;
+    }
 private:
     int _timeSinceEggLaying;
 };

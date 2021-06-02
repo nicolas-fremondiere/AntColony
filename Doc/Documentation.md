@@ -60,7 +60,7 @@ We stated that the ant will have a fix age at which they will evolve.
 - [ ] Make the queen produce egg - **Chloé**
 - [ ] Make the evolution system & hunger system & age system- **Nicolas**
 - [ ] Make the pheromone disapear other time - **Chloé et Nicolas**
-- [ ] Make the pheromone decision system for the fighter ant - **Chloé et Nicolas**
+- [x] Make the pheromone decision system for the fighter ant - **Chloé et Nicolas**
 - [ ] Make the fighter ant able to carry food and deposit it in the nest - **Chloé**
 - [ ] Make food or obstacles with random chances - **Nicolas**
 - [ ] On click, make food or obstacles (left or right click) - **Nicolas**

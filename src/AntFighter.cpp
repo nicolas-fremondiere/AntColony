@@ -40,10 +40,20 @@ void AntFighter::setQuantityMaxOfFood(int quantityMaxOfFood) {
     _quantityMaxOfFood = quantityMaxOfFood;
 }
 
+void AntFighter::addFood(int foodAmount)
+{
+    _quantityOfFood +=foodAmount;
+    if(_quantityOfFood > _quantityMaxOfFood)
+        _quantityOfFood = _quantityMaxOfFood;
+}
+
+
+
 void AntFighter::moveTo(std::pair<int, int> coord) {
     if(_displayed){
-        GridManager::getInstance().remove(getCoord());
-        GridManager::getInstance().getAnts().at(getCoord().first).at(getCoord().second) = NULL;
+        GridManager::getInstance().removeDisplay(getCoord());
+
+        GridManager::getInstance().removeAnt(getCoord());
     }
     else
     {
@@ -52,28 +62,17 @@ void AntFighter::moveTo(std::pair<int, int> coord) {
 
     setCoord(coord);
     GridManager::getInstance().display(ANT_IMG, getCoord());
-    GridManager::getInstance().getAnts().at(coord.first).at(coord.second) = this;
+    GridManager::getInstance().addAnts(this,coord);
 }
 
 
 void AntFighter::behave()
 {
     float decision = (float) rand()/RAND_MAX;
-//    qDebug() << "random : "<< decision;
 
-    std::pair<int,int> here = getCoord();
-    std::pair<int,int> allPosibilities[] = {
-        std::make_pair(here.first-1,here.second),
-        std::make_pair(here.first,here.second+1),
-        std::make_pair(here.first+1,here.second),
-        std::make_pair(here.first,here.second-1)
-    };
-
-//    qDebug() << "coord : "<< here.first<<here.second;
-
+    std::vector<std::pair<int,int>> allPosibilities = getSurroundings();
 
     GridManager& instGM = GridManager::getInstance();
-//    std::vector<std::pair<int,int>> freeSpace;
     std::map<std::pair<int,int>,float> freeSpace;
     //get only the free space arround the ant
     for(std::pair<int,int> & coord : allPosibilities ) {
@@ -92,62 +91,54 @@ void AntFighter::behave()
         probabilities[prob.first] = prob.second/somme;
     }
 
-
-//    qDebug() << "somme : "<< somme;
-//    qDebug() << "decision : "<< decision;
-
     std::pair<int,int> finaldecision;
     float gauge =0;
     for(auto prob : probabilities) {
-//        qDebug() << "freespace here : " << prob.first.first << prob.first.second;
-
         gauge += prob.second;
-//        qDebug() << "Gauge here : " << gauge;
-
-        if( gauge > decision)
+        if( decision<gauge )
         {
             finaldecision = prob.first;
             break;
         }
     }
-//    qDebug() << "final decision : " << finaldecision.first << finaldecision.second;
+
+    qDebug() << "Move To  : "<< finaldecision.first<<finaldecision.second;
+
     moveTo(finaldecision);
 
-
-//    int topConcentration = instGM.getPheromones().at(getCoord().first-1).at(getCoord().second)->getConcentration();
-//    int rightConcentration = instGM.getPheromones().at(getCoord().first).at(getCoord().second+1)->getConcentration();
-//    int botConcentration = instGM.getPheromones().at(getCoord().first-1).at(getCoord().second)->getConcentration();
-//    int leftConcentration = instGM.getPheromones().at(getCoord().first).at(getCoord().second-1)->getConcentration();
-//    float somme = topConcentration + rightConcentration + botConcentration + leftConcentration;
+    Food* myFood = foodDetector();
+    if(myFood != NULL)
+    {
 
 
-////    std::map<std::string, float> probabilities {
-////        {"top", topConcentration/somme},
-////        {"right", rightConcentration/somme},
-////        {"bot", botConcentration/somme},
-////        {"left", leftConcentration/somme},
-////    };
+        //Check if
 
-//    float gauge =probabilities["top"];
-//    if(decision <=gauge)
-//    {
 
-//    }
-//    else if(decision <= gauge + probabilities["right"])
-//    {
-
-//    }
-//    else if(decision <= gauge + probabilities["bot"])
-//    {
-
-//    }
-//    else
-//    {
-
-//    }
-
+        //remove food
+    }
 
 
 }
 
 
+Food* AntFighter::foodDetector(){
+    std::vector<std::pair<int,int>> allPosibilities = getSurroundings();
+    GridManager& instGM = GridManager::getInstance();
+    for(std::pair<int,int> & coord : allPosibilities ) {
+       if(instGM.getElementByCoord(coord) == Cell::FOOD)
+       {
+            return instGM.getFoods().at(coord.first).at(coord.second);
+       }
+    }
+    return NULL;
+}
+
+std::vector<std::pair<int,int>> AntFighter::getSurroundings(){
+    std::pair<int,int> here = getCoord();
+    std::vector<std::pair<int,int>> allPosibilities = {
+        std::make_pair(here.first-1,here.second),
+        std::make_pair(here.first,here.second+1),
+        std::make_pair(here.first+1,here.second),
+        std::make_pair(here.first,here.second-1)};
+    return allPosibilities;
+}
