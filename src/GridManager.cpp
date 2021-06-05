@@ -165,7 +165,7 @@ void GridManager::generateFoodObstacle(int type){
             _obstacles.at(coordGenerated.first).at(coordGenerated.second) = new Obstacle(coordGenerated);
         }
     }else{
-
+        generateFoodObstacle(type);
     }
 }
 
@@ -191,6 +191,12 @@ void GridManager::removeDisplay(std::pair<int,int> pos)
     _buttonGrid.at(pos.first).at(pos.second)->setIcon(QIcon());
 }
 
+
+void GridManager::debug(){
+    for (Colony* c: _colonies) {
+        qDebug() << c->getAnts();
+    }
+}
 
 
 

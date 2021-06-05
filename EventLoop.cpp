@@ -12,28 +12,31 @@
 void EventLoop::update()
 {
 
-    QElapsedTimer timer;
-    timer.start();
+//    QElapsedTimer timer;
+//    timer.start();
 
     GridManager& instanceGridManager = GridManager::getInstance();
 
     //The ants leave the nest!
     instanceGridManager.getOutOfHere();
 
+    //Debug fonction for allocation memory
+//    instanceGridManager.debug();
+
     for(Colony* c : instanceGridManager.getColonies() ) {
         // Order the colonies to order its ants to do something
         c->behaveAll();
     }
-      qDebug() << "The behaveAll operation took" << timer.elapsed() << "milliseconds";
-      timer.restart();
+//      qDebug() << "The behaveAll operation took" << timer.elapsed() << "milliseconds";
+//      timer.restart();
     //update the color for the pheromone
     for(int i=0; i <gridSize.first;i++) {
         for(int j=0;j < gridSize.second;j++) {
             instanceGridManager.getPheromones().at(i).at(j)->decayConcentration(1);
         }
     }
-  qDebug() << "The slow update display took" << timer.elapsed() << "milliseconds";
-  timer.restart();
+//  qDebug() << "The slow update display took" << timer.elapsed() << "milliseconds";
+//  timer.restart();
     //random occurrence of foods (= 1) and obstacles (= 2)
     int occurence = rand() % 100;
     if(occurence < 20){
@@ -42,8 +45,8 @@ void EventLoop::update()
         instanceGridManager.generateFoodObstacle(2);
     }
 
-      qDebug() << "The slow food obstacles took" << timer.elapsed() << "milliseconds";
-      timer.restart();
+//      qDebug() << "The slow food obstacles took" << timer.elapsed() << "milliseconds";
+//      timer.restart();
     //creation new ant
     for(Colony* c : instanceGridManager.getColonies()){
         for(Ant* ant : c->getAnts()){
@@ -60,8 +63,8 @@ void EventLoop::update()
             }
         }
     }
-  qDebug() << "The egg laying took" << timer.elapsed() << "milliseconds";
-  timer.restart();
+//  qDebug() << "The egg laying took" << timer.elapsed() << "milliseconds";
+//  timer.restart();
     //management of the age and the hunger of ants
     for(Colony* c : instanceGridManager.getColonies()){
         for(Ant* ant : c->getAnts()){
@@ -107,7 +110,7 @@ void EventLoop::update()
                 c->deleteAnt(ant);
                 delete ant;
 
-            }else if(ant->getType() == FIGHTER && ant->getAge() > 60){
+            }else if(ant->getType() == FIGHTER && ant->getAge() > 100){
 
                 // the death of a fighter
                 GridManager::getInstance().removeDisplay(ant->getCoord());
@@ -118,8 +121,8 @@ void EventLoop::update()
             }
         }
     }
-      qDebug() << "The evolution took" << timer.elapsed() << "milliseconds";
-      timer.restart();
+//      qDebug() << "The evolution took" << timer.elapsed() << "milliseconds";
+//      timer.restart();
 }
 
 

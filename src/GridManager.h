@@ -45,6 +45,7 @@ public:
     void generateFoodObstacle(int type);
     void addAnts(Ant* ant,std::pair<int,int> coord);
     void removeAnt(std::pair<int,int> coord);
+    void debug();
 
 private:
     std::pair<int,int> _size;

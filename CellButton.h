@@ -12,7 +12,7 @@ public:
     CellButton(std::pair<int,int> coord);
 protected:
 
-    void enterEvent(QMouseEvent *event);
+    void enterEvent(QEnterEvent *event);
 
 private:
 

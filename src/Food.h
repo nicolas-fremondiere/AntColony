@@ -21,8 +21,6 @@ public:
 
     void setHpRecovery(int hpRecovery);
 
-    int getFoodAmount(AntFighter* ant);
-
 private:
     int _currentQuantity;
     std::pair<int,int> _coord;

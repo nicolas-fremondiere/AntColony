@@ -130,10 +130,11 @@ void AntFighter::behave()
     Food* myFood = foodDetector();
     if(myFood != NULL && !_haveFood)
     {
-        int foodAmount = myFood->getFoodAmount(this);
+        int foodAmount = myFood->getCurrentQuantity();
         _haveFood= true;
-        _quantityOfFood = foodAmount;
-        qDebug() << "miamiam j'ai a mangé";
+        _quantityOfFood = getQuantityMaxOfFood();
+        foodAmount -= _quantityOfFood;
+        myFood->setCurrentQuantity(foodAmount);
     }
 
     //Detect if colony nearby and have food
@@ -146,7 +147,6 @@ void AntFighter::behave()
             mcol->addFood(_quantityOfFood);
             _quantityOfFood = 0;
             _haveFood = false;
-            qDebug() << "J'ai posé nourriture cool";
         }
     }
 }
