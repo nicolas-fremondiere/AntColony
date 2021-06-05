@@ -9,6 +9,7 @@ class Food {
 public:
     Food( const std::pair<int, int> &coord, int hpRecovery = 10);
 
+    ~Food();
     int getCurrentQuantity() const;
 
     void setCurrentQuantity(int currentQuantity);

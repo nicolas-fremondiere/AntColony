@@ -13,6 +13,8 @@ public:
 protected:
 
     void enterEvent(QEnterEvent *event);
+    void mousePressEvent(QMouseEvent *event);
+
 
 private:
 

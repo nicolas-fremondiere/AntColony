@@ -68,7 +68,7 @@ void GridManager::init(std::pair<int,int> size)
     }
 
     //Initialize the obstacles by default
-    std::vector<std::pair<int,int>> vectorPosObsacles={{28,47},{15,39},{25,50},{20,60}};
+    std::vector<std::pair<int,int>> vectorPosObsacles={{28,47},{15,39},{20,60}};
     for (std::pair<int,int>& pos: vectorPosObsacles)
     {
        _obstacles.at(pos.first).at(pos.second) = new Obstacle(pos);
@@ -101,7 +101,10 @@ std::vector<std::vector<Ant*>> GridManager::getAnts()
 {
     return _ants;
 }
-
+std::vector<std::vector<Obstacle*>> GridManager::getObstacles()
+{
+    return _obstacles;
+}
 std::vector<Colony*> GridManager::getColonies()
 {
     return _colonies;
@@ -191,13 +194,35 @@ void GridManager::removeDisplay(std::pair<int,int> pos)
     _buttonGrid.at(pos.first).at(pos.second)->setIcon(QIcon());
 }
 
+void GridManager::addObstacles(std::pair<int,int> coord)
+{
+    _obstacles.at(coord.first).at(coord.second) = new Obstacle(coord);
+}
 
-void GridManager::debug(){
-    for (Colony* c: _colonies) {
-        qDebug() << c->getAnts();
+void GridManager::addFood(std::pair<int,int> coord)
+{
+    _foods.at(coord.first).at(coord.second) = new Food(coord);
+}
+
+void GridManager::deleteObstacles(std::pair<int,int> coord)
+{
+    if(_obstacles.at(coord.first).at(coord.second) != NULL)
+    {
+        delete _obstacles.at(coord.first).at(coord.second);
+        _obstacles.at(coord.first).at(coord.second)=NULL;
     }
 }
 
+void GridManager::deleteFood(std::pair<int,int> coord)
+{
+    if(_foods.at(coord.first).at(coord.second) != NULL)
+    {
+        delete _foods.at(coord.first).at(coord.second);
+        _foods.at(coord.first).at(coord.second)=NULL;
+    }
+}
 
-
-
+float GridManager::getDistance(std::pair<int,int> coord1,std::pair<int,int> coord2)
+{
+    return sqrt((coord2.first - coord1.first )^2 + (coord2.second - coord1.second)^2);
+}

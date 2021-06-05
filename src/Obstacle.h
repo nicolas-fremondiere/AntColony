@@ -8,7 +8,7 @@
 class Obstacle {
 public:
     Obstacle(std::pair<int, int> &coord);
-
+    ~Obstacle();
     const std::pair<int, int> &getCoord() const;
 
     void setCoord(const std::pair<int, int> &coord);
