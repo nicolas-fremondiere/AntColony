@@ -34,9 +34,9 @@ void Pheromone::addConcentration(int amount)
 
 void Pheromone::decayConcentration(int amount)
 {
-  if(_concentration>0)
+  if(_concentration > 0)
     _concentration -= amount;
-  if(_concentration<0)
+  if(_concentration < 0)
     _concentration=0;
 }
 

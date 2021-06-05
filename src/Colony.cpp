@@ -18,7 +18,7 @@ Colony::Colony(std::pair<int,int> coord, int foodStorage) :
     newQueen->setColony(this);
     _ants.push_back(newQueen);
 
-    for (int i=0;i<5;i++)
+    for (int i=0;i<15;i++)
     {
         AntFighter* newFighter = new AntFighter(coord);
         newFighter->setColony(this);

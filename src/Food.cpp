@@ -38,26 +38,3 @@ int Food::getHpRecovery() const {
 void Food::setHpRecovery(int hpRecovery) {
     _hpRecovery = hpRecovery;
 }
-
-//Get the correct amount of food
-int Food::getFoodAmount(AntFighter* antF)
-{
-    if(_currentQuantity!=0)
-    {
-       int foodAmount;
-       int maxFood = antF->getQuantityMaxOfFood() - antF->getQuantityOfFood();
-       if(_currentQuantity <= maxFood)
-       {
-           foodAmount = _currentQuantity;
-           _currentQuantity=0;
-       }
-       else
-       {
-            foodAmount= maxFood;
-           _currentQuantity=-maxFood;
-       }
-       return foodAmount;
-    }
-
-    return 0;
-}

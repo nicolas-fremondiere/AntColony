@@ -168,7 +168,7 @@ void GridManager::generateFoodObstacle(int type){
             _obstacles.at(coordGenerated.first).at(coordGenerated.second) = new Obstacle(coordGenerated);
         }
     }else{
-
+        generateFoodObstacle(type);
     }
 }
 
@@ -194,15 +194,16 @@ void GridManager::removeDisplay(std::pair<int,int> pos)
     _buttonGrid.at(pos.first).at(pos.second)->setIcon(QIcon());
 }
 
-
 void GridManager::addObstacles(std::pair<int,int> coord)
 {
     _obstacles.at(coord.first).at(coord.second) = new Obstacle(coord);
 }
+
 void GridManager::addFood(std::pair<int,int> coord)
 {
     _foods.at(coord.first).at(coord.second) = new Food(coord);
 }
+
 void GridManager::deleteObstacles(std::pair<int,int> coord)
 {
     if(_obstacles.at(coord.first).at(coord.second) != NULL)
@@ -211,6 +212,7 @@ void GridManager::deleteObstacles(std::pair<int,int> coord)
         _obstacles.at(coord.first).at(coord.second)=NULL;
     }
 }
+
 void GridManager::deleteFood(std::pair<int,int> coord)
 {
     if(_foods.at(coord.first).at(coord.second) != NULL)
@@ -224,6 +226,3 @@ double GridManager::getDistance(std::pair<int,int> coord1,std::pair<int,int> coo
 {
     return sqrt(pow((coord2.first - coord1.first ),2) + pow((coord2.second - coord1.second),2));
 }
-
-
-
