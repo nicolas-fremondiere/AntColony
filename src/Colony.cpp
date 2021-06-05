@@ -18,12 +18,16 @@ Colony::Colony(std::pair<int,int> coord, int foodStorage) :
     newQueen->setColony(this);
     _ants.push_back(newQueen);
 
-    for (int i=0;i<3;i++)
+    for (int i=0;i<5;i++)
     {
-        AntFighter *newFighter = new AntFighter(coord);
+        AntFighter* newFighter = new AntFighter(coord);
         newFighter->setColony(this);
         _ants.push_back(newFighter);
         _waitArea.push_back(newFighter);
+
+        AntWorker* newWorker = new AntWorker(this->getCoord());
+        newWorker->setColony(this);
+        this->addAnt(newWorker);
     }
 }
 
@@ -48,9 +52,6 @@ void Colony::addAnt(Ant* ant){
 void Colony::deleteAnt(Ant* ant){
     remove(_ants.begin(), _ants.end(), ant);
     _ants.resize(_ants.size()-1);
-//    for(Ant* a : getAnts()){
-//        qDebug() << "Composition : " << a->getType();
-//    }
 }
 
 int Colony::getFoodStorage() const {

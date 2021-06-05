@@ -68,14 +68,14 @@ void GridManager::init(std::pair<int,int> size)
     }
 
     //Initialize the obstacles by default
-    std::vector<std::pair<int,int>> vectorPosObsacles={{19,25},{20,25},{22,25},{20,26}};
+    std::vector<std::pair<int,int>> vectorPosObsacles={{28,47},{15,39},{25,50},{20,60}};
     for (std::pair<int,int>& pos: vectorPosObsacles)
     {
        _obstacles.at(pos.first).at(pos.second) = new Obstacle(pos);
     }
 
     //Initialize the foods by default
-    std::vector<std::pair<int,int>> vectorPosFood={{25,25},{26,25},{24,25},{20,27}};
+    std::vector<std::pair<int,int>> vectorPosFood={{25,54},{36,46},{24,39},{20,27}};
     for (std::pair<int,int>& pos: vectorPosFood)
     {
        _foods.at(pos.first).at(pos.second) = new Food(pos) ;
@@ -87,8 +87,6 @@ void GridManager::init(std::pair<int,int> size)
     _colonies.push_back(firstColony);
 }
 
-
-void GridManager::getInfoColony(Colony colony){}
 
 std::vector<std::vector<CellButton*>> GridManager::getButtonGrid()
 {
