@@ -53,6 +53,7 @@ public:
     void deleteFood(std::pair<int,int> coord);
 
     double getDistance(std::pair<int,int> coord1,std::pair<int,int> coord2);
+    std::pair<int,int> getMoveProb(Ant* ant,std::pair<int,int> coord2);
 private:
     std::pair<int,int> _size;
 

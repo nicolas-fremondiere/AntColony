@@ -92,7 +92,7 @@ void AntFighter::behave()
         if(instGM.getElementByCoord(coord) == Cell::FREE)
         {
             //We add +1 to avoid the division by 0
-            freeSpace[coord] = instGM.getElement(instGM.getPheromones(),coord)->getConcentration() +1;
+            freeSpace[coord] = instGM.getElement(instGM.getPheromones(),coord)->getConcentration()/4 +1;
             int distance = ceil(instGM.getDistance(coord,_myColony->getCoord()));
             if(!_haveFood)
             {
@@ -100,12 +100,7 @@ void AntFighter::behave()
             }
             else
             {
-                freeSpace[coord]+= ceil((1/distance) * 100);
-            }
-
-            if(_lastPosition == coord)
-            {
-                freeSpace[coord] = freeSpace[coord]/4;
+                freeSpace[coord]+= ceil((1/distance) * 500);
             }
         }
     }

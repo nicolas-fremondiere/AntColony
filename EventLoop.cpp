@@ -28,7 +28,7 @@ void EventLoop::update()
     for(int i=0; i <gridSize.first;i++) {
         for(int j=0;j < gridSize.second;j++) {
             int beforeUpdate = instanceGridManager.getPheromones().at(i).at(j)->getConcentration();
-            instanceGridManager.getPheromones().at(i).at(j)->decayConcentration(1);
+            instanceGridManager.getPheromones().at(i).at(j)->decayConcentration(3);
             if(instanceGridManager.getPheromones().at(i).at(j)->getConcentration() !=beforeUpdate)
                 instanceGridManager.getPheromones().at(i).at(j)->updateDisplay();
         }

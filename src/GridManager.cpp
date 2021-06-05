@@ -226,3 +226,48 @@ double GridManager::getDistance(std::pair<int,int> coord1,std::pair<int,int> coo
 {
     return sqrt(pow((coord2.first - coord1.first ),2) + pow((coord2.second - coord1.second),2));
 }
+
+//In progress
+
+std::pair<int,int> GridManager::getMoveProb(Ant* ant,std::pair<int,int> coord2)
+{
+    float decision = (float) rand()/RAND_MAX;
+    std::vector<std::pair<int,int>> allPosibilities = ant->getSurroundings();
+
+
+    GridManager& instGM = GridManager::getInstance();
+    std::map<std::pair<int,int>,float> freeSpace;
+
+    //get only the free space arround the ant
+    for(std::pair<int,int> & coord : allPosibilities ) {
+        if(instGM.getElementByCoord(coord) == Cell::FREE)
+        {
+            double visibility  = 1/instGM.getDistance(coord,ant->getColony()->getCoord());
+            double intensity = instGM.getPheromones().at(coord.first).at(coord.second)->getConcentration();
+            int alpha = 1;
+            int beta = 1;
+
+            freeSpace[coord] = pow(intensity,alpha) * pow(visibility,beta);
+        }
+    }
+
+
+    float somme = std::accumulate(freeSpace.begin(), freeSpace.end(), 0, [](const size_t previous, decltype(*freeSpace.begin()) p) { return previous+p.second; });
+
+    std::map<std::pair<int,int>,float> probabilities;
+    for(auto prob : freeSpace) {
+        probabilities[prob.first] = prob.second/somme;
+    }
+    //Get the final decision
+    std::pair<int,int> finaldecision;
+    float gauge =0;
+    for(auto prob : probabilities) {
+        gauge += prob.second;
+        if( decision<gauge )
+        {
+            finaldecision = prob.first;
+            break;
+        }
+    }
+    return finaldecision;
+}
