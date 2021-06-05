@@ -3,6 +3,9 @@
 #include "GridManager.h"
 #include "AntQueen.h"
 #include "AntFighter.h"
+#include "AntLarva.h"
+#include "AntWorker.h"
+
 
 Colony::Colony(std::pair<int,int> coord, int foodStorage) :
         _coord(coord),
@@ -92,6 +95,5 @@ int Colony::countAnt(TYPE_ANT antType)
     }
     return sum;
 }
-
 
 

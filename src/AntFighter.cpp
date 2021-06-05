@@ -117,10 +117,13 @@ void AntFighter::behave()
             break;
         }
     }
+
+    //add pheromone
     if(_haveFood)
-        instGM.getPheromones().at(_coord.first).at(_coord.second)->addConcentration(20);
+        instGM.getPheromones().at(_coord.first).at(_coord.second)->addConcentration(30);
     else
-        instGM.getPheromones().at(_coord.first).at(_coord.second)->addConcentration(10);
+        instGM.getPheromones().at(_coord.first).at(_coord.second)->addConcentration(15);
+    instGM.getPheromones().at(_coord.first).at(_coord.second)->updateDisplay();
 
     moveTo(finaldecision);
 

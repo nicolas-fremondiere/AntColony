@@ -55,15 +55,17 @@ We stated that the ant will have a fix age at which they will evolve.
 - [x] Display and obstacle by calling the constructor of the class - **Chloé**
 - [x] Make the pheromone display depending on its concentration (color) - **Nicolas**
 - [x] Initialize a grid with default values - **Nicolas**
-- [ ] Display the counter of the egg,larva,worker and fighter -  **Chloé**
+- [x] Display the counter of the egg,larva,worker and fighter -  **Chloé**
 - [x] Develop the round system - **Nicolas**
-- [ ] Make the queen produce egg - **Chloé**
-- [ ] Make the evolution system & hunger system & age system- **Nicolas**
+- [x] Make the queen produce egg - **Chloé**
+- [x] Make the evolution system & hunger system & age system- **Nicolas**
 - [x] Make the pheromone disapear other time - **Chloé et Nicolas**
 - [x] Make the pheromone decision system for the fighter ant - **Chloé et Nicolas**
 - [x] Make the fighter ant able to carry food and deposit it in the nest - **Chloé**
 - [x] Make food or obstacles with random chances - **Nicolas**
 - [ ] On click, make food or obstacles (left or right click) - **Nicolas**
+- [ ] Make the ants smarter - **Chloé et Nicolas**
+- [ ] Food managment for ants - **Chloé et Nicolas**
 - [ ] **Optional** : Make a new queen
 - [ ] **Optional** : Make the unitary tests
 
