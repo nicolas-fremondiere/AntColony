@@ -59,6 +59,17 @@ void EventLoop::update()
         for(Ant* ant : c->getAnts()){
             ant->addAge();
             ant->hungerDamage();
+
+            // if hp = 0, ant die
+            if(ant->getCurrentHp() <= 0){
+                if(ant->getType() == FIGHTER){
+                    GridManager::getInstance().removeDisplay(ant->getCoord());
+                    GridManager::getInstance().removeAnt(ant->getCoord());
+                }
+                c->deleteAnt(ant);
+                delete ant;
+            }
+
             if(ant->getType() == EGG && ant->getAge() > 10){
 
                 // Evolution of egg to larva

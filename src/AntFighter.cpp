@@ -58,7 +58,6 @@ void AntFighter::addFood(int foodAmount)
 }
 
 
-
 void AntFighter::moveTo(std::pair<int, int> coord) {
     if(_displayed){
         GridManager::getInstance().removeDisplay(getCoord());
@@ -131,6 +130,7 @@ void AntFighter::behave()
         int foodAmount = myFood->getFoodAmount(this);
         _haveFood= true;
         _quantityOfFood = foodAmount;
+        qDebug() << "miamiam j'ai a mangé";
     }
 
     //Detect if colony nearby and have food
@@ -143,11 +143,10 @@ void AntFighter::behave()
             mcol->addFood(_quantityOfFood);
             _quantityOfFood = 0;
             _haveFood = false;
+            qDebug() << "J'ai posé nourriture cool";
         }
     }
-
 }
-
 
 Food* AntFighter::foodDetector(){
     std::vector<std::pair<int,int>> allPosibilities = getSurroundings();

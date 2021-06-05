@@ -18,13 +18,13 @@ void CellButton::enterEvent(QEnterEvent *event) {
             }
         }
 
+        int amountOfFood = myColony->getFoodStorage();
         int amountOfEgg = myColony->countAnt(TYPE_ANT::EGG);
         int amountOfWorker = myColony->countAnt(TYPE_ANT::WORKER);
         int amountOfLarva = myColony->countAnt(TYPE_ANT::LARVA);
         int amountOfFighter = myColony->countAnt(TYPE_ANT::FIGHTER);
         int amountOfQueen = myColony->countAnt(TYPE_ANT::QUEEN);
-        QString info = QString("Egg : %1\nLarva : %2\nWorker : %3\nFighter : %4\nQueen : %5").arg(amountOfEgg).arg(amountOfLarva).arg(amountOfWorker).arg(amountOfFighter).arg(amountOfQueen);
-
+        QString info = QString("Egg : %1\nLarva : %2\nWorker : %3\nFighter : %4\nQueen : %5\nFood : %6").arg(amountOfEgg).arg(amountOfLarva).arg(amountOfWorker).arg(amountOfFighter).arg(amountOfQueen).arg(amountOfFood);
 
         setToolTip(info);
     }

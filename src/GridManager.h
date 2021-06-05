@@ -40,7 +40,6 @@ public:
     void display(const char* rcLink,std::pair<int,int> pos);
     void removeDisplay(std::pair<int,int> pos);
 
-    void getInfoColony(Colony colony);
     Cell getElementByCoord(std::pair<int,int> coord);
     void getOutOfHere();
     void generateFoodObstacle(int type);
