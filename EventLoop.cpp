@@ -66,13 +66,21 @@ void EventLoop::update()
             ant->hungerDamage();
 
             // if hp = 0, ant die
-            if(ant->getCurrentHp() <= 0){
+            if(ant->getCurrentHp() <= 0 && c->getFoodStorage() == 0){
+
                 if(ant->getType() == FIGHTER){
                     GridManager::getInstance().removeDisplay(ant->getCoord());
                     GridManager::getInstance().removeAnt(ant->getCoord());
                 }
                 c->deleteAnt(ant);
                 delete ant;
+
+            }else if(ant->getCurrentHp() <= ant->getMaxHp()*0.2 && c->getFoodStorage() > 0){
+
+                ant->setCurrentHp(ant->getMaxHp());
+                int currentFoodStorage = c->getFoodStorage()-1;
+                c->setFoodStorage(currentFoodStorage);
+
             }else if(ant->getType() == EGG && ant->getAge() > 10){
 
                 // Evolution of egg to larva

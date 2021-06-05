@@ -136,7 +136,6 @@ void AntFighter::behave()
     else
         instGM.getPheromones().at(_coord.first).at(_coord.second)->addConcentration(15);
 
-
     moveTo(finaldecision);
 
     //Detect if food nearby
@@ -146,8 +145,14 @@ void AntFighter::behave()
         int foodAmount = myFood->getCurrentQuantity();
         _haveFood= true;
         _quantityOfFood = getQuantityMaxOfFood();
-        foodAmount -= _quantityOfFood;
-        myFood->setCurrentQuantity(foodAmount);
+        if(foodAmount >= _quantityOfFood){
+            foodAmount -= _quantityOfFood;
+            myFood->setCurrentQuantity(foodAmount);
+        }else{
+            // Object is empty of food se we need to delete it
+            _quantityOfFood = foodAmount;
+            instGM.deleteFood(myFood->getCoord());
+        }
     }
 
     //Detect if colony nearby

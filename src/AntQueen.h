@@ -7,7 +7,7 @@
 
 class AntQueen : public Ant{
 public:
-    AntQueen(std::pair<int, int> coord,int age=100, int color=5, int maxHp=500, int currentHp=500, int _timeSinceEggLaying=0,int damageByHunger=4);
+    AntQueen(std::pair<int, int> coord,int age=100, int color=5, int maxHp=500, int currentHp=500, int _timeSinceEggLaying=0,int damageByHunger=10);
 
     int getTimeSinceEggLaying() const;
 
