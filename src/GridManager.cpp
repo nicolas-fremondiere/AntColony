@@ -220,9 +220,9 @@ void GridManager::deleteFood(std::pair<int,int> coord)
     }
 }
 
-float GridManager::getDistance(std::pair<int,int> coord1,std::pair<int,int> coord2)
+double GridManager::getDistance(std::pair<int,int> coord1,std::pair<int,int> coord2)
 {
-    return sqrt((coord2.first - coord1.first )^2 + (coord2.second - coord1.second)^2);
+    return sqrt(pow((coord2.first - coord1.first ),2) + pow((coord2.second - coord1.second),2));
 }
 
 

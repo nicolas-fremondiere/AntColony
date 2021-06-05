@@ -52,7 +52,7 @@ public:
     void deleteObstacles(std::pair<int,int> coord);
     void deleteFood(std::pair<int,int> coord);
 
-    float getDistance(std::pair<int,int> coord1,std::pair<int,int> coord2);
+    double getDistance(std::pair<int,int> coord1,std::pair<int,int> coord2);
 private:
     std::pair<int,int> _size;
 

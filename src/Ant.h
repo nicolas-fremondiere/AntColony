@@ -84,9 +84,13 @@ public:
        _myColony = myColony;
     }
 
-    virtual void moveTo(std::pair<int, int> coord){}
+    virtual void moveTo(std::pair<int, int> coord)
+    {
+        qDebug()<<"You are not suposed to be here "<<coord;
+    }
     virtual void behave(){}
     virtual TYPE_ANT getType(){
+        //By default it's an egg
         return TYPE_ANT::EGG;
     }
 
