@@ -31,6 +31,7 @@ public:
     std::vector<std::vector<Pheromone*>> getPheromones();
     std::vector<std::vector<Ant*>> getAnts();
     std::vector<std::vector<Food*>> getFoods();
+    std::vector<std::vector<Obstacle*>>  getObstacles();
     std::vector<Colony*> getColonies();
 
     template <typename T> T* getElement(std::vector<std::vector<T*>>tab, std::pair<int,int> coord){return tab.at(coord.first).at(coord.second);}
@@ -46,6 +47,12 @@ public:
     void addAnts(Ant* ant,std::pair<int,int> coord);
     void removeAnt(std::pair<int,int> coord);
 
+    void addObstacles(std::pair<int,int> coord);
+    void addFood(std::pair<int,int> coord);
+    void deleteObstacles(std::pair<int,int> coord);
+    void deleteFood(std::pair<int,int> coord);
+
+    float getDistance(std::pair<int,int> coord1,std::pair<int,int> coord2);
 private:
     std::pair<int,int> _size;
 

@@ -24,7 +24,7 @@ void EventLoop::update()
         // Order the colonies to order its ants to do something
         c->behaveAll();
     }
-      qDebug() << "The behaveAll operation took" << timer.elapsed() << "milliseconds";
+      //qDebug() << "The behaveAll operation took" << timer.elapsed() << "milliseconds";
       timer.restart();
     //update the color for the pheromone
     for(int i=0; i <gridSize.first;i++) {
@@ -32,7 +32,7 @@ void EventLoop::update()
             instanceGridManager.getPheromones().at(i).at(j)->decayConcentration(1);
         }
     }
-  qDebug() << "The slow update display took" << timer.elapsed() << "milliseconds";
+  //qDebug() << "The slow update display took" << timer.elapsed() << "milliseconds";
   timer.restart();
     //random occurrence of foods (= 1) and obstacles (= 2)
     int occurence = rand() % 100;
@@ -42,7 +42,7 @@ void EventLoop::update()
         instanceGridManager.generateFoodObstacle(2);
     }
 
-      qDebug() << "The slow food obstacles took" << timer.elapsed() << "milliseconds";
+      //qDebug() << "The food obstacles took" << timer.elapsed() << "milliseconds";
       timer.restart();
     //creation new ant
     for(Colony* c : instanceGridManager.getColonies()){
@@ -60,7 +60,7 @@ void EventLoop::update()
             }
         }
     }
-  qDebug() << "The egg laying took" << timer.elapsed() << "milliseconds";
+  //qDebug() << "The egg laying took" << timer.elapsed() << "milliseconds";
   timer.restart();
     //management of the age and the hunger of ants
     for(Colony* c : instanceGridManager.getColonies()){
@@ -76,9 +76,7 @@ void EventLoop::update()
                 }
                 c->deleteAnt(ant);
                 delete ant;
-            }
-
-            if(ant->getType() == EGG && ant->getAge() > 10){
+            }else if(ant->getType() == EGG && ant->getAge() > 10){
 
                 // Evolution of egg to larva
                 AntLarva* newLarva = new AntLarva(c->getCoord());
@@ -118,7 +116,7 @@ void EventLoop::update()
             }
         }
     }
-      qDebug() << "The evolution took" << timer.elapsed() << "milliseconds";
+      //qDebug() << "The evolution took" << timer.elapsed() << "milliseconds";
       timer.restart();
 }
 

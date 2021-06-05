@@ -26,6 +26,10 @@ void Pheromone::setConcentration(float concentration) {
 void Pheromone::addConcentration(int amount)
 {
   _concentration += amount;
+  if(_concentration>255)
+  {
+      _concentration=255;
+  }
 }
 
 void Pheromone::decayConcentration(int amount)

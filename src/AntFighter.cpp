@@ -106,6 +106,7 @@ void AntFighter::behave()
         probabilities[prob.first] = prob.second/somme;
     }
 
+    //Get the final decision
     std::pair<int,int> finaldecision;
     float gauge =0;
     for(auto prob : probabilities) {
@@ -117,7 +118,7 @@ void AntFighter::behave()
         }
     }
 
-    //add pheromone
+    //Add pheromone
     if(_haveFood)
         instGM.getPheromones().at(_coord.first).at(_coord.second)->addConcentration(30);
     else
@@ -136,9 +137,10 @@ void AntFighter::behave()
         qDebug() << "miamiam j'ai a mangé";
     }
 
-    //Detect if colony nearby and have food
+    //Detect if colony nearby
     std::vector<std::pair<int,int>> newSurroundings = getSurroundings();
 
+    //put down the food in the colony
     Colony* mcol = _myColony;
     for(auto pos : newSurroundings) {
         if(pos.first == mcol->getCoord().first && pos.second == mcol->getCoord().second && _haveFood)
@@ -149,6 +151,7 @@ void AntFighter::behave()
             qDebug() << "J'ai posé nourriture cool";
         }
     }
+
 }
 
 Food* AntFighter::foodDetector(){

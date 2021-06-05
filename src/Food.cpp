@@ -10,6 +10,11 @@ Food::Food( const std::pair<int, int> &coord, int hpRecovery) :  _coord(coord), 
 
 }
 
+Food::~Food()
+{
+    GridManager::getInstance().removeDisplay(_coord);
+}
+
 int Food::getCurrentQuantity() const {
     return _currentQuantity;
 }

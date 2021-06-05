@@ -2,7 +2,7 @@
 #include "src/GridManager.h"
 #include <QString>
 #include "src/include_tools.h"
-
+#include <QMouseEvent>
 CellButton::CellButton(std::pair<int,int> coord) : _coord(coord){
 
 }
@@ -17,7 +17,8 @@ void CellButton::enterEvent(QEnterEvent *event) {
                 break;
             }
         }
-
+        if(myColony == NULL)
+            return;
         int amountOfFood = myColony->getFoodStorage();
         int amountOfEgg = myColony->countAnt(TYPE_ANT::EGG);
         int amountOfWorker = myColony->countAnt(TYPE_ANT::WORKER);
@@ -28,4 +29,37 @@ void CellButton::enterEvent(QEnterEvent *event) {
 
         setToolTip(info);
     }
+}
+
+
+void CellButton::mousePressEvent(QMouseEvent *event){
+
+    switch (event->button()) {
+        case Qt::LeftButton:
+            if(GridManager::getInstance().getElementByCoord(_coord) == Cell::FREE)
+            {
+                GridManager::getInstance().addFood(_coord);
+            }
+            else if (GridManager::getInstance().getElementByCoord(_coord) == Cell::FOOD)
+            {
+                GridManager::getInstance().deleteFood(_coord);
+            }
+        break;
+        case Qt::RightButton:
+            if(GridManager::getInstance().getElementByCoord(_coord) == Cell::FREE)
+            {
+                GridManager::getInstance().addObstacles(_coord);
+            }
+            else if (GridManager::getInstance().getElementByCoord(_coord) == Cell::OBSTACLE)
+            {
+                GridManager::getInstance().deleteObstacles(_coord);
+            }
+        break;
+        case Qt::MiddleButton:
+        break;
+        default:
+        break;
+    }
+
+
 }
