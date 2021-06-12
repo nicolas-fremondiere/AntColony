@@ -64,6 +64,11 @@ void CellButton::mousePressEvent(QMouseEvent *event){
             }
         break;
         case Qt::MiddleButton:
+            if(GridManager::getInstance().getElementByCoord(_coord) == Cell::FREE)
+            {
+                GridManager::getInstance().addColonies(_coord);
+            }
+
         break;
         default:
         break;

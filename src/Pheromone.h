@@ -27,7 +27,6 @@ private:
     std::pair<int,int> _coord;
     bool _foodAhead;
     float _concentration;
-    int _colonyId;
 };
 
 

@@ -41,19 +41,23 @@ public:
     void display(const char* rcLink,std::pair<int,int> pos);
     void removeDisplay(std::pair<int,int> pos);
 
+    //Determine the type of object on a cell
     Cell getElementByCoord(std::pair<int,int> coord);
+    //Make an ant leave the nest
     void getOutOfHere();
+    //random algorithm to generate food and obstacles
     void generateFoodObstacle(int type);
+
+    //Manage the addition or deletion of colonies,ants,obstacles or foods
     void addAnts(Ant* ant,std::pair<int,int> coord);
     void removeAnt(std::pair<int,int> coord);
-
+    void addColonies(std::pair<int,int> coord);
     void addObstacles(std::pair<int,int> coord);
     void addFood(std::pair<int,int> coord);
     void deleteObstacles(std::pair<int,int> coord);
     void deleteFood(std::pair<int,int> coord);
-
+    //measure the distance between 2 coordinate
     double getDistance(std::pair<int,int> coord1,std::pair<int,int> coord2);
-    std::pair<int,int> getMoveProb(Ant* ant,std::pair<int,int> coord2);
 private:
     std::pair<int,int> _size;
 

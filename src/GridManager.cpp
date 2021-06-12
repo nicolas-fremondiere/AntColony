@@ -7,6 +7,7 @@ GridManager::GridManager(){}
 
 GridManager::~GridManager()
 {
+    //clean everyting!
     for (int i =0 ; i < gridSize.first;i++)
     {
         for (int j =0 ; j < gridSize.second;j++)
@@ -23,8 +24,8 @@ GridManager::~GridManager()
     }
     for (Colony* col: _colonies)
     {
-       col->eraseALl();
-       delete col;
+        col->eraseALl();
+        delete col;
     }
 
 }
@@ -71,14 +72,14 @@ void GridManager::init(std::pair<int,int> size)
     std::vector<std::pair<int,int>> vectorPosObsacles={{28,47},{15,39},{20,60}};
     for (std::pair<int,int>& pos: vectorPosObsacles)
     {
-       _obstacles.at(pos.first).at(pos.second) = new Obstacle(pos);
+        _obstacles.at(pos.first).at(pos.second) = new Obstacle(pos);
     }
 
     //Initialize the foods by default
     std::vector<std::pair<int,int>> vectorPosFood={{25,54},{36,46},{24,39},{20,27}};
     for (std::pair<int,int>& pos: vectorPosFood)
     {
-       _foods.at(pos.first).at(pos.second) = new Food(pos) ;
+        _foods.at(pos.first).at(pos.second) = new Food(pos) ;
     }
 
     //Initialize the colony by default
@@ -119,7 +120,7 @@ std::vector<std::vector<Food*>> GridManager::getFoods()
 Cell GridManager::getElementByCoord(std::pair<int,int> coord)
 {
     //If out of bounds
-    if(coord.first<0 || coord.second<0 || coord.first >= gridSize.first || coord.second >= gridSize.second) {
+    if(coord.first < 0 || coord.second < 0 || coord.first >= gridSize.first || coord.second >= gridSize.second) {
         return Cell::OOB;
     }else if( _ants.at(coord.first).at(coord.second)!=NULL ) {
         return Cell::ANT;
@@ -204,6 +205,12 @@ void GridManager::addFood(std::pair<int,int> coord)
     _foods.at(coord.first).at(coord.second) = new Food(coord);
 }
 
+void GridManager::addColonies(std::pair<int,int> coord)
+{
+    Colony *firstColony = new Colony(coord);
+    _colonies.push_back(firstColony);
+}
+
 void GridManager::deleteObstacles(std::pair<int,int> coord)
 {
     if(_obstacles.at(coord.first).at(coord.second) != NULL)
@@ -227,47 +234,3 @@ double GridManager::getDistance(std::pair<int,int> coord1,std::pair<int,int> coo
     return sqrt(pow((coord2.first - coord1.first ),2) + pow((coord2.second - coord1.second),2));
 }
 
-//In progress
-
-std::pair<int,int> GridManager::getMoveProb(Ant* ant,std::pair<int,int> coord2)
-{
-    float decision = (float) rand()/RAND_MAX;
-    std::vector<std::pair<int,int>> allPosibilities = ant->getSurroundings();
-
-
-    GridManager& instGM = GridManager::getInstance();
-    std::map<std::pair<int,int>,float> freeSpace;
-
-    //get only the free space arround the ant
-    for(std::pair<int,int> & coord : allPosibilities ) {
-        if(instGM.getElementByCoord(coord) == Cell::FREE)
-        {
-            double visibility  = 1/instGM.getDistance(coord,ant->getColony()->getCoord());
-            double intensity = instGM.getPheromones().at(coord.first).at(coord.second)->getConcentration();
-            int alpha = 1;
-            int beta = 1;
-
-            freeSpace[coord] = pow(intensity,alpha) * pow(visibility,beta);
-        }
-    }
-
-
-    float somme = std::accumulate(freeSpace.begin(), freeSpace.end(), 0, [](const size_t previous, decltype(*freeSpace.begin()) p) { return previous+p.second; });
-
-    std::map<std::pair<int,int>,float> probabilities;
-    for(auto prob : freeSpace) {
-        probabilities[prob.first] = prob.second/somme;
-    }
-    //Get the final decision
-    std::pair<int,int> finaldecision;
-    float gauge =0;
-    for(auto prob : probabilities) {
-        gauge += prob.second;
-        if( decision<gauge )
-        {
-            finaldecision = prob.first;
-            break;
-        }
-    }
-    return finaldecision;
-}

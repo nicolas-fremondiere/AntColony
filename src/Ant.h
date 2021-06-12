@@ -93,9 +93,6 @@ public:
         //By default it's an egg
         return TYPE_ANT::EGG;
     }
-    virtual std::vector<std::pair<int,int>> getSurroundings(){
-        return std::vector<std::pair<int,int>>();
-    }
 
 protected:
     int _age;

@@ -26,14 +26,18 @@ public:
 
     void setLastPosition(std::pair<int,int> lastPosition);
 
+    //Move to a specific position
     void moveTo(std::pair<int, int> coord);
 
+    //determine the action of the ant during one turn
     void behave();
 
+    //Return a food object if one is arroung
     Food* foodDetector();
 
     void addFood(int foodAmount);
 
+    //Return the 4 position arroung the ant
     std::vector<std::pair<int,int>> getSurroundings();
 
     TYPE_ANT getType(){

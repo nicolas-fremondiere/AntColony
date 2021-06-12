@@ -28,7 +28,7 @@ void EventLoop::update()
     for(int i=0; i <gridSize.first;i++) {
         for(int j=0;j < gridSize.second;j++) {
             int beforeUpdate = instanceGridManager.getPheromones().at(i).at(j)->getConcentration();
-            instanceGridManager.getPheromones().at(i).at(j)->decayConcentration(3);
+            instanceGridManager.getPheromones().at(i).at(j)->decayConcentration(2);
             if(instanceGridManager.getPheromones().at(i).at(j)->getConcentration() !=beforeUpdate)
                 instanceGridManager.getPheromones().at(i).at(j)->updateDisplay();
         }
@@ -125,7 +125,7 @@ void EventLoop::update()
 
             }else if(ant->getType() == FIGHTER && ant->getAge() > 100){
 
-                // the death of a fighter
+                // The death of a fighter
                 GridManager::getInstance().removeDisplay(ant->getCoord());
                 GridManager::getInstance().removeAnt(ant->getCoord());
                 c->deleteAnt(ant);

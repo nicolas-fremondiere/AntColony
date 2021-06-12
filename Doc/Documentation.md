@@ -64,8 +64,12 @@ We stated that the ant will have a fix age at which they will evolve.
 - [x] Make the fighter ant able to carry food and deposit it in the nest - **Chloé**
 - [x] Make food or obstacles with random chances - **Nicolas**
 - [x] On click, make food or obstacles (left or right click) - **Nicolas**
-- [ ] Make the ants smarter - **Chloé et Nicolas**
-- [ ] Food managment for ants - **Chloé et Nicolas**
-- [ ] **Optional** : Make a new queen
+- [x] Make the ants smarter - **Chloé et Nicolas**
+- [x] Food managment for ants - **Chloé et Nicolas**
+- [x] **Optional** : Make a new queen
 - [ ] **Optional** : Make the unitary tests
+
+
+
+
 
