@@ -7,7 +7,7 @@
 
 class Colony {
 public:
-    Colony(std::pair<int,int> coord, int foodStorage=0);
+    Colony(std::pair<int,int> coord, int foodStorage=0, int maxFoodStorage=200);
 
     std::pair<int, int> getCoord();
 
@@ -22,6 +22,10 @@ public:
     int getFoodStorage() const;
 
     void setFoodStorage(int foodStorage);
+
+    int getMaxFoodStorage() const;
+
+    void setMaxFoodStorage(int maxFoodStorage);
 
     std::vector<Ant*>& getWaitArea();
 
@@ -40,6 +44,7 @@ private:
     std::vector<Ant*> _ants;
     int _foodStorage;
     std::vector<Ant*> _waitArea;
+    int _maxFoodStorage;
 };
 
 

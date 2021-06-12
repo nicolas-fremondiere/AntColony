@@ -7,9 +7,10 @@
 #include "AntWorker.h"
 
 
-Colony::Colony(std::pair<int,int> coord, int foodStorage) :
+Colony::Colony(std::pair<int,int> coord, int foodStorage, int maxFoodStorage) :
         _coord(coord),
-        _foodStorage(foodStorage)
+        _foodStorage(foodStorage),
+        _maxFoodStorage(maxFoodStorage)
 {
     GridManager::getInstance().display(HOUSE_IMG,coord);
 
@@ -18,7 +19,7 @@ Colony::Colony(std::pair<int,int> coord, int foodStorage) :
     newQueen->setColony(this);
     _ants.push_back(newQueen);
 
-    for (int i=0;i<15;i++)
+    for (int i=0;i<10;i++)
     {
         AntFighter* newFighter = new AntFighter(coord);
         newFighter->setColony(this);
@@ -58,16 +59,29 @@ int Colony::getFoodStorage() const {
     return _foodStorage;
 }
 
-void Colony::setFoodStorage(int foodStorage) {
+void Colony::setFoodStorage(int foodStorage){
     _foodStorage = foodStorage;
 }
 
-std::vector<Ant*>& Colony::getWaitArea() {
+int Colony::getMaxFoodStorage() const {
+    return _maxFoodStorage;
+}
+
+void Colony::setMaxFoodStorage(int maxFoodStorage){
+    _maxFoodStorage = maxFoodStorage;
+}
+
+std::vector<Ant*>& Colony::getWaitArea(){
     return _waitArea;
 }
 
 void Colony::addFood(int amount){
     _foodStorage += amount;
+
+    // If foodStorage bigger than maxFoodStorage
+    if( getFoodStorage() > getMaxFoodStorage()){
+        _foodStorage = getMaxFoodStorage();
+    }
 }
 
 void Colony::popBackWaitArea(){

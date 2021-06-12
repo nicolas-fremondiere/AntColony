@@ -119,7 +119,7 @@ std::vector<std::vector<Food*>> GridManager::getFoods()
 Cell GridManager::getElementByCoord(std::pair<int,int> coord)
 {
     //If out of bounds
-    if(coord.first<0 || coord.second<0 || coord.first > gridSize.first || coord.second > gridSize.second) {
+    if(coord.first<0 || coord.second<0 || coord.first >= gridSize.first || coord.second >= gridSize.second) {
         return Cell::OOB;
     }else if( _ants.at(coord.first).at(coord.second)!=NULL ) {
         return Cell::ANT;

@@ -26,7 +26,6 @@ public:
 
     void setLastPosition(std::pair<int,int> lastPosition);
 
-
     void moveTo(std::pair<int, int> coord);
 
     void behave();

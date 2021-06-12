@@ -65,7 +65,7 @@ void EventLoop::update()
             ant->addAge();
             ant->hungerDamage();
 
-            // if hp = 0, ant die
+            // If hp = 0, ant die
             if(ant->getCurrentHp() <= 0 && c->getFoodStorage() == 0){
 
                 if(ant->getType() == FIGHTER){
@@ -75,6 +75,19 @@ void EventLoop::update()
                 c->deleteAnt(ant);
                 delete ant;
 
+            // If fighter hunger and have food so he eat it
+            }else if((ant->getType() == FIGHTER) && (ant->getCurrentHp() <= ant->getMaxHp()*0.2)){
+
+                AntFighter* tempFighter = dynamic_cast<AntFighter*>(ant);
+                if(tempFighter->isHaveFood()){
+                    tempFighter->setCurrentHp(tempFighter->getMaxHp());
+                    tempFighter->setQuantityOfFood(tempFighter->getQuantityOfFood()-1);
+                    if(tempFighter->getQuantityOfFood() == 0){
+                        tempFighter->setHaveFood(false);
+                    }
+                }
+
+            // If ant hunger go eat food in colony
             }else if(ant->getCurrentHp() <= ant->getMaxHp()*0.2 && c->getFoodStorage() > 0){
 
                 ant->setCurrentHp(ant->getMaxHp());
