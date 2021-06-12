@@ -69,3 +69,83 @@ stateDiagram-v2
     Larva(11/20) --> Worker(21/30): Evolution
     Worker(21/30) --> Fighter(31/60) : Evolution
     Fighter(31/60) --> [*] : Death
+
+
+
+
+
+class diagram v2
+classDiagram
+    Ant <|-- AntWorker
+    Ant <|-- AntFighter
+    Ant <|-- AntQueen
+    Ant <|-- AntEgg
+    Ant <|-- AntLarva
+    Colony <-- Ant
+    GridManager <--Colony
+    GridManager <--Food
+    GridManager <--Obstacle
+    GridManager <--Pheromone
+    QGridLayout <|-- GridManager
+    QPushButton <|-- CellButton
+    QWidget <|-- EventLoop
+
+    class GridManager{
+        - pair<int,int> _size
+        - Colony[] _colonies
+        - Food[] _foods
+        - Obstacle[] _obstacles
+        - Pheromone[] _pheromones
+    }
+    class EventLoop{
+        + void update()
+    }
+    class CellButton{
+        - std::pair<int,int> _coord;
+        + void enterEvent()
+        + void mousePressEvent()
+    }
+
+    class Colony{
+        - std::pair<int,int> _coord;
+        - std::vector<Ant*> _ants;
+        - int _foodStorage;
+        - std::vector<Ant*> _waitArea;
+        - int _maxFoodStorage;
+    }
+
+    class Ant{
+        - int _age
+        - color _color
+        - int _maxHP
+        - int _currentHP
+        - pair<int,int> _coord
+        - Colony* _myColony;
+    }
+    class AntFighter{
+        - bool _haveFood;
+        - int _quantityOfFood;
+        - int _quantityMaxOfFood;
+        - bool _displayed;
+        - std::pair<int,int> _lastPosition;
+
+    }
+    class AntQueen{
+        + int _timeSinceEggLaying
+    }
+
+    class Obstacle{
+        - pair<int,int> _coord
+    }
+    class Food{
+        - pair<int,int> _coord
+        - int _quantity
+        - int _hpRecovery
+    }
+
+    class Pheromone{
+        - pair<int,int> _coord
+        - boolean _foodAhead
+        - float _concentration
+        - int _colonyId
+    }

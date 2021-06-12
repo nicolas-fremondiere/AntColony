@@ -12,7 +12,6 @@ SOURCES += \
     CellButton.cpp \
     EventLoop.cpp \
     main.cpp \
-    mainwindow.cpp \
     src/AntEgg.cpp \
     src/AntFighter.cpp \
     src/AntLarva.cpp \
@@ -27,7 +26,6 @@ SOURCES += \
 HEADERS += \
     CellButton.h \
     EventLoop.h \
-    mainwindow.h \
     src/Ant.h \
     src/AntEgg.h \
     src/AntFighter.h \
@@ -41,8 +39,7 @@ HEADERS += \
     src/Pheromone.h \
     src/include_tools.h
 
-FORMS += \
-    mainwindow.ui
+FORMS +=
 
 TRANSLATIONS += \
     AntColony_en_US.ts
