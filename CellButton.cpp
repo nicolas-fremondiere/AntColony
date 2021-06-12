@@ -29,6 +29,14 @@ void CellButton::enterEvent(QEnterEvent *event) {
 
         setToolTip(info);
     }
+    else if(GridManager::getInstance().getElementByCoord(_coord) == Cell::FOOD)
+    {
+        int amountOfFood =GridManager::getInstance().getFoods().at(_coord.first).at(_coord.second)->getCurrentQuantity();
+        QString info = QString("Food : %1").arg(amountOfFood);
+        setToolTip(info);
+
+    }
+
 }
 
 
