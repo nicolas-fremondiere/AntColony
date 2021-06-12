@@ -26,9 +26,9 @@ Colony::Colony(std::pair<int,int> coord, int foodStorage, int maxFoodStorage) :
         _ants.push_back(newFighter);
         _waitArea.push_back(newFighter);
 
-        AntWorker* newWorker = new AntWorker(this->getCoord());
-        newWorker->setColony(this);
-        this->addAnt(newWorker);
+        AntLarva* newLarva = new AntLarva(this->getCoord());
+        newLarva->setColony(this);
+        this->addAnt(newLarva);
     }
 }
 

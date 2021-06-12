@@ -36,9 +36,9 @@ void EventLoop::update()
 
     //random occurrence of foods (= 1) and obstacles (= 2)
     int occurence = rand() % 100;
-    if(occurence < 20){
+    if(occurence < 10){
         instanceGridManager.generateFoodObstacle(1);
-    }else if(occurence > 20 && occurence < 25){
+    }else if(occurence > 15 && occurence < 20){
         instanceGridManager.generateFoodObstacle(2);
     }
 
