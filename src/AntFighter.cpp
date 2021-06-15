@@ -84,7 +84,7 @@ void AntFighter::behave()
 
     GridManager& instGM = GridManager::getInstance();
     std::map<std::pair<int,int>,float> freeSpace;
-
+    std::map<std::pair<int,int>,float> distances;
 
 
     //get only the free space arround the ant
@@ -92,18 +92,36 @@ void AntFighter::behave()
         if(instGM.getElementByCoord(coord) == Cell::FREE)
         {
             //We add +1 to avoid the division by 0
-            freeSpace[coord] = instGM.getElement(instGM.getPheromones(),coord)->getConcentration()/4 +1;
-            int distance = ceil(instGM.getDistance(coord,_myColony->getCoord()));
-            if(!_haveFood)
-            {
-                freeSpace[coord]+=distance*10;
-            }
-            else
-            {
-                freeSpace[coord]+= ceil((1/distance) * 500);
-            }
+            freeSpace[coord] = instGM.getElement(instGM.getPheromones(),coord)->getConcentration()/7 +1;
+
+            distances[coord] = instGM.getDistance(coord,_myColony->getCoord());
         }
     }
+    std::pair<int,int> best_coord;
+    if(!_haveFood)
+    {
+        best_coord= getMaxDistancePosition(distances);
+    }
+    else
+    {
+        best_coord= getMinDistancePosition(distances);
+    }
+
+    if(best_coord!=std::make_pair(-1,-1))
+    {
+        if(!_haveFood && distances[best_coord] < quarterDistance)
+        {
+            freeSpace[best_coord]+=5;
+        }
+        else if (_haveFood)
+        {
+            freeSpace[best_coord]+=40;
+        }
+
+    }
+
+
+
     if(freeSpace.empty())return;
 
     float somme = std::accumulate(freeSpace.begin(), freeSpace.end(), 0, [](const size_t previous, decltype(*freeSpace.begin()) p) { return previous+p.second; });
@@ -126,13 +144,11 @@ void AntFighter::behave()
     }
 
     //Add pheromone
-    if(instGM.getPheromones().at(_coord.first).at(_coord.second)->getConcentration() < 255)
-    {
-        if(_haveFood)
-            instGM.getPheromones().at(_coord.first).at(_coord.second)->addConcentration(25);
-        else
-            instGM.getPheromones().at(_coord.first).at(_coord.second)->addConcentration(12);
-    }
+
+    if(_haveFood)
+        instGM.getPheromones().at(_coord.first).at(_coord.second)->addConcentration(25);
+    else
+        instGM.getPheromones().at(_coord.first).at(_coord.second)->addConcentration(15);
 
 
 
@@ -191,4 +207,40 @@ std::vector<std::pair<int,int>> AntFighter::getSurroundings(){
         std::make_pair(here.first+1,here.second),
         std::make_pair(here.first,here.second-1)};
     return allPosibilities;
+}
+
+
+std::pair<int,int> AntFighter::getMinDistancePosition(std::map<std::pair<int,int>,float> freeSpace)
+{
+    float min = std::numeric_limits<float>::max();
+    std::pair<int,int> bestCoord(-1,-1);
+
+    for(auto distance : freeSpace ) {
+
+        if(distance.second < min)
+        {
+            min = distance.second;
+            bestCoord = distance.first;
+        }
+    }
+    return bestCoord;
+}
+
+
+
+std::pair<int,int> AntFighter::getMaxDistancePosition(std::map<std::pair<int,int>,float> freeSpace)
+{
+    float max = std::numeric_limits<float>::min();
+    std::pair<int,int> bestCoord(-1,-1);
+
+    for(auto distance : freeSpace ) {
+
+        if(distance.second > max)
+        {
+            max = distance.second;
+            bestCoord = distance.first;
+        }
+    }
+
+    return bestCoord;
 }

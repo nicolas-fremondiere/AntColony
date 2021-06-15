@@ -26,9 +26,9 @@ void Pheromone::setConcentration(float concentration) {
 void Pheromone::addConcentration(int amount)
 {
   _concentration += amount;
-  if(_concentration>255)
+  if(_concentration>127)
   {
-      _concentration=255;
+      _concentration=127;
   }
 }
 
@@ -41,7 +41,7 @@ void Pheromone::decayConcentration(int amount)
 }
 
 void Pheromone::updateDisplay(){
-    int concentration = 255-this->_concentration;
+    int concentration = 255-this->_concentration*2;
     if(concentration<0)
         concentration=0;
 

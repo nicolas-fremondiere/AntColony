@@ -36,6 +36,17 @@ void CellButton::enterEvent(QEnterEvent *event) {
         setToolTip(info);
 
     }
+    else
+    {
+        int amountPheromone =GridManager::getInstance().getPheromones().at(_coord.first).at(_coord.second)->getConcentration();
+        if(amountPheromone != 0)
+        {
+            QString info = QString("Pheromone : %1").arg(amountPheromone);
+            setToolTip(info);
+        }
+
+    }
+
 
 }
 

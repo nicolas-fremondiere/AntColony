@@ -57,7 +57,10 @@ void EventLoop::update()
                 }
             }
         }
+        instanceGridManager.getPheromones().at(c->getCoord().first).at(c->getCoord().second)->setConcentration(0);
     }
+
+
 
     //management of the age and the hunger of ants
     for(Colony* c : instanceGridManager.getColonies()){

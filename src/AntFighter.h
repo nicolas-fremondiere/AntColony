@@ -43,6 +43,12 @@ public:
     TYPE_ANT getType(){
         return TYPE_ANT::FIGHTER;
     }
+
+
+    std::pair<int,int> getMinDistancePosition(std::map<std::pair<int,int>,float> freeSpace);
+    std::pair<int,int> getMaxDistancePosition(std::map<std::pair<int,int>,float> freeSpace);
+
+
 private:
     bool _haveFood;
     int _quantityOfFood;

@@ -11,6 +11,7 @@
 #define ANTCOLONY_GRID_H
 
 const std::pair<int,int> gridSize(50,100);
+const double quarterDistance = sqrt(pow((-1 - gridSize.first ),2) + pow((-1 - gridSize.second),2)) /6;
 
 enum Cell{
     OOB,
