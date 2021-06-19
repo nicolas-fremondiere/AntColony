@@ -92,7 +92,7 @@ void AntFighter::behave()
         if(instGM.getElementByCoord(coord) == Cell::FREE)
         {
             //We add +1 to avoid the division by 0
-            freeSpace[coord] = instGM.getElement(instGM.getPheromones(),coord)->getConcentration()/7 +1;
+            freeSpace[coord] = instGM.getElement(instGM.getPheromones(),coord)->getConcentration()/3 +1;
 
             distances[coord] = instGM.getDistance(coord,_myColony->getCoord());
         }
@@ -143,12 +143,12 @@ void AntFighter::behave()
         }
     }
 
-    //Add pheromone
+    //Depose pheromone
 
     if(_haveFood)
         instGM.getPheromones().at(_coord.first).at(_coord.second)->addConcentration(25);
-    else
-        instGM.getPheromones().at(_coord.first).at(_coord.second)->addConcentration(15);
+//    else
+//        instGM.getPheromones().at(_coord.first).at(_coord.second)->addConcentration(15);
 
 
 

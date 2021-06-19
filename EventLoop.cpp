@@ -28,7 +28,7 @@ void EventLoop::update()
     for(int i=0; i <gridSize.first;i++) {
         for(int j=0;j < gridSize.second;j++) {
             int beforeUpdate = instanceGridManager.getPheromones().at(i).at(j)->getConcentration();
-            instanceGridManager.getPheromones().at(i).at(j)->decayConcentration(2);
+            instanceGridManager.getPheromones().at(i).at(j)->decayConcentration(1);
             if(instanceGridManager.getPheromones().at(i).at(j)->getConcentration() !=beforeUpdate)
                 instanceGridManager.getPheromones().at(i).at(j)->updateDisplay();
         }
@@ -69,7 +69,7 @@ void EventLoop::update()
             ant->hungerDamage();
 
             // If hp = 0, ant die
-            if(ant->getCurrentHp() <= 0 && c->getFoodStorage() == 0){
+            if(ant->getCurrentHp() <= 0){
 
                 if(ant->getType() == FIGHTER){
                     GridManager::getInstance().removeDisplay(ant->getCoord());
@@ -91,7 +91,7 @@ void EventLoop::update()
                 }
 
             // If ant hunger go eat food in colony
-            }else if(ant->getCurrentHp() <= ant->getMaxHp()*0.2 && c->getFoodStorage() > 0){
+            }else if(ant->getType() != FIGHTER && ant->getCurrentHp() <= ant->getMaxHp()*0.3 && c->getFoodStorage() > 0){
 
                 ant->setCurrentHp(ant->getMaxHp());
                 int currentFoodStorage = c->getFoodStorage()-1;
